@@ -81,7 +81,7 @@ export default function () {
             </ul>
           </div>
           <div className="w-full max-h-6 border-t border-white flex justify-end items-center p-4">
-            <p className="text-lg text-white">Copyright<span className="mr-1 ml-1"><i className="fa-regular fa-copyright"></i></span>2023 - Renyel Jay Sioc</p>
+            <p className="text-lg text-white">Copyright<span className="mr-1 ml-1"><i className="fa-regular fa-copyright"></i></span>2024 - Renyel Jay Sioc</p>
           </div>
         </footer>
       </>
