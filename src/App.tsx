@@ -5,7 +5,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import { Home } from "./pages";
+import { Home, Product } from "./pages";
 
 import { MainLayout } from "./layouts";
 
@@ -16,6 +16,7 @@ export default function App() {
         {/* public routes */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/product" element={<Product />} />
         </Route>
       </Route>
     )
