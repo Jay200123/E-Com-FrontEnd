@@ -4,8 +4,21 @@ import ImageTwo from "../../assets/laptop-2.jpg";
 import ImageThree from "../../assets/computer-two.jpg";
 import ImageFour from "../../assets/mobile-3jpeg.jpg";
 import ImageFive from "../../assets/laptop3.avif";
+import { useProductStore } from "../../state/store";
+import { useQuery } from "@tanstack/react-query";
 
 export default function () {
+  const { getAllProducts } = useProductStore();
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["products"],
+    queryFn: getAllProducts,
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="flex flex-col justify-center h-full w-full p-2">
       <Carousel />
