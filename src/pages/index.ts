@@ -1,7 +1,15 @@
 import Home from "./Home";
-import Product from "./Product";    
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
+import MobileProducts from "./Products/MobileProducts";
+import LaptopProducts from "./Products/LaptopProducts";
+import ComputerProducts from "./Products/ComputerProduct";
 
 export {
-    Home,
-    Product
-}
+  Home,
+  SignIn,
+  SignUp,
+  MobileProducts,
+  LaptopProducts,
+  ComputerProducts,
+};
