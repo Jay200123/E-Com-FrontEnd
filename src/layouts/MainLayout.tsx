@@ -6,7 +6,7 @@ export default function () {
     <>
       <main className="flex flex-col justify-between min-h-screen min-w-screen">
         <Navbar />
-        <div className="m-1">
+        <div>
           <Outlet />
         </div>
         <Footer />
