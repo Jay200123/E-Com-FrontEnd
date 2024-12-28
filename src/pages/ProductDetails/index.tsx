@@ -6,7 +6,7 @@ export default function () {
     }
   return (
     <>
-      <div className="flex items-center w-full h-screen">
+      <div className="flex flex-col items-center w-full h-screen md:flex-row">
         <div className="relative w-1/2 h-full ">
             <i onClick={back} className="absolute m-2 text-2xl cursor-pointer fa fa-arrow-left"></i>
 
