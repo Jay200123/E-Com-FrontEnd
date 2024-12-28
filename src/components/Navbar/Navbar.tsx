@@ -23,8 +23,7 @@ export default function () {
       <div className="flex items-center justify-center">
         <ul className="flex flex-row items-start justify-start">
           <li onClick={home} className="m-3 text-sm font-semibold cursor-pointer">Home</li>
-          <li className="m-3 text-sm font-semibold">Shop</li>
-          <li className="m-3 text-sm font-semibold">Product</li>
+          <li className="m-3 text-sm font-semibold">About</li>
           <li className="m-3 text-sm font-semibold">Contact Us</li>
         </ul>
       </div>
