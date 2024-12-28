@@ -24,6 +24,10 @@ export default function () {
     navigate("/products/computers");
   };
 
+  const product = ()=>{
+    navigate("/sample/product") 
+  }
+
   // const { data, isLoading } = useQuery({
   //   queryKey: ["products"],
   //   queryFn: getAllProducts,
@@ -82,7 +86,7 @@ export default function () {
         <h3 className="text-3xl font-bold text-left">New Arrivals</h3>
         <div className="flex items-center w-full overflow-x-auto">
           <div className="flex flex-nowrap">
-            <div className="min-w-[18.75rem] max-w-[25rem] cursor-pointer transition-all duration-500 h-auto p-2 flex-shrink-0 border border-gray-300 rounded-md m-4">
+            <div onClick={product} className="min-w-[18.75rem] max-w-[25rem] cursor-pointer transition-all duration-500 h-auto p-2 flex-shrink-0 border border-gray-300 rounded-md m-4">
               <img src={ImageFour} className="object-cover w-full h-64" />
               <p className="font-semibold">Samsung A05s</p>
               <div className="flex items-center justify-between">
