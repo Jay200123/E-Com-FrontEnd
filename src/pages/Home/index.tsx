@@ -37,7 +37,7 @@ export default function () {
     <div className="flex flex-col justify-center w-full h-full p-2">
       <Carousel />
       <h3 className="text-3xl font-bold text-left">Categories</h3>
-      <div className="w-full h-[31.25rem] flex items-center justify-start mt-1 p-2 rounded-md">
+      <div className="w-full h-[31.25rem] flex items-center justify-start mt-1 p-2 ">
         <div className="flex flex-col justify-start w-1/2 h-full overflow-hidden rounded-sm bg-slate-400 ">
           <img className="relative object-cover w-full h-full" src={ImageOne} />
           <div className="absolute p-2 text-left">
