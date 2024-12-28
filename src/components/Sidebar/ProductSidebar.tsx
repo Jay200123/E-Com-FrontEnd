@@ -1,4 +1,7 @@
 export default function () {
+  const back = ()=>{
+    window.history.back();
+  }
   return (
     <div className="w-[10rem] h-screen bg-gray-700 text-white hidden md:flex flex-col justify-between items-center">
       <div className="flex flex-col justify-center p-1">
@@ -20,7 +23,7 @@ export default function () {
       </ul>
 
       <div className="mb-4">
-        <button className="px-4 py-2 text-sm font-semibold bg-gray-600 rounded-md hover:bg-gray-500">
+        <button onClick={back} className="px-4 py-2 text-sm font-semibold bg-gray-600 rounded-md hover:bg-gray-500">
           <i className="mr-1 fa fa-arrow-left"></i> Back
         </button>
       </div>
