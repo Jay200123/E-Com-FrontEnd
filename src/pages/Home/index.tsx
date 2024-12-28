@@ -143,7 +143,7 @@ export default function () {
         </div>
       </div>
       <div className="w-full flex justify-between items-center h-[18.75rem]">
-        <div className="w-1/2 h-full">
+        <div className="hidden w-1/2 h-full md:block">
           <img
             src={ImageFive}
             className="object-none w-full h-full overflow-hidden"
@@ -165,8 +165,8 @@ export default function () {
         </div>
       </div>
       <div className="flex items-center justify-center">
-        <div className="grid grid-cols-4 gap-4 mt-3">
-          <div className="flex flex-col overflow-hidden text-center p-2 h-[11.7rem] rounded-md  w-[11.7rem] border border-black">
+        <div className="flex flex-col items-center mt-3 md:grid md:grid-cols-4 md:gap-4">
+          <div className="flex flex-col m-2 overflow-hidden text-center p-2 h-[11.7rem] rounded-md  w-[11.7rem] border border-black">
             <i className="text-3xl fa-solid fa-truck-fast"></i>
             <h3 className="text-lg">Free Shipping</h3>
             <p className="text-sm">
@@ -175,7 +175,7 @@ export default function () {
             </p>
           </div>
 
-          <div className="flex flex-col overflow-hidden text-center p-2 h-[11.7rem] w-[11.7rem] rounded-md   border border-black">
+          <div className="flex flex-col m-2 overflow-hidden text-center p-2 h-[11.7rem] w-[11.7rem] rounded-md   border border-black">
             <i className="text-3xl fa-solid fa-award"></i>
             <h3 className="text-lg">Money-Back Guarantee</h3>
             <p className="text-sm">
@@ -184,7 +184,7 @@ export default function () {
             </p>
           </div>
 
-          <div className="flex flex-col overflow-hidden text-center p-2 h-[11.7rem] w-[11.7rem] rounded-md   border border-black">
+          <div className="flex flex-col m-2 overflow-hidden text-center p-2 h-[11.7rem] w-[11.7rem] rounded-md   border border-black">
             <i className="text-3xl fa-solid fa-lock"></i>
             <h3 className="text-lg">Secure Payments</h3>
             <p className="text-sm">
@@ -193,7 +193,7 @@ export default function () {
             </p>
           </div>
 
-          <div className="flex flex-col text-center overflow-hidden p-2 h-[11.7rem] w-[11.7rem] rounded-md  border border-black">
+          <div className="flex flex-col m-2 text-center overflow-hidden p-2 h-[11.7rem] w-[11.7rem] rounded-md  border border-black">
             <i className="text-3xl fa-solid fa-phone"></i>
             <h3 className="text-lg">Customer Support</h3>
             <p className="text-sm">
