@@ -4,6 +4,7 @@ import SignUp from "./SignUp";
 import MobileProducts from "./Products/MobileProducts";
 import LaptopProducts from "./Products/LaptopProducts";
 import ComputerProducts from "./Products/ComputerProduct";
+import Profile from "./Profile";
 
 export {
   Home,
@@ -12,4 +13,5 @@ export {
   MobileProducts,
   LaptopProducts,
   ComputerProducts,
+  Profile,
 };
