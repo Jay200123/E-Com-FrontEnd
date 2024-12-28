@@ -13,6 +13,7 @@ import {
   ComputerProducts,
   LaptopProducts,
   Profile,
+  ProductDetails
 } from "./pages";
 
 import { 
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/sample/profile" element={<Profile />} />
+          <Route path="/sample/product" element={<ProductDetails />} />
         </Route>
 
         <Route element={<ProductLayout />}>
