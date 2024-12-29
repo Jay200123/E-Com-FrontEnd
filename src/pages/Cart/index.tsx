@@ -1,11 +1,17 @@
 import ImageTwo from "../../assets/mobile-3jpeg.jpg";
+import { useNavigate } from "react-router-dom";
 
 export default function () {
+  const navigate = useNavigate();
+  const checkout = () => {  
+    navigate("/sample/checkout");
+  }
+  
   return (
     <>
-      <div className="w-full flex items-center h-screen p-2">
-        <div className="w-9/12 p-2 h-full rounded-md">
-          <h3 className="text-3xl text-left m-1 w-4/5 border-b-4 border-black p-2">
+      <div className="flex flex-col items-center w-full h-screen p-2 md:flex-row">
+        <div className="w-9/12 h-full p-2 rounded-md">
+          <h3 className="w-4/5 p-2 m-1 text-3xl text-left border-b-4 border-black">
             My Cart
           </h3>
           <div className="w-full h-full overflow-y-auto flex flex-col justify-start mt-2.5">
@@ -20,7 +26,7 @@ export default function () {
                 <div className="flex items-center justify-start">
                   <p className="text-[1rem] font-semibold">Samsung A05S</p>
                 </div>
-                <div className="overflow-hidden  text-left mb-1">
+                <div className="mb-1 overflow-hidden text-left">
                   <p className="text-sm line-clamp-3">
                     The Samsung Galaxy A05s is a "budget-friendly" smartphone
                     that features a large 6.7-inch FHD+ display with a 90Hz
@@ -40,13 +46,13 @@ export default function () {
                     Unit Price:<span className="ml-1">6,490.00</span>
                   </p>
 
-                  <div className="flex items-center">
+                  <div className="flex flex-col items-center md:flex-row">
                     <p className="mr-2 text-lg font-semibold">Qty:</p>
-                    <button className="p-1 text-sm  w-[4rem]  text-center font-bold text-white bg-red-600 rounded-md">
+                    <button className="p-1 text-xs md:text-sm  w-[4rem]  text-center font-bold text-white bg-red-600 rounded-md">
                       <i className="fa-solid text-[1rem] text-white fa-plus"></i>
                     </button>
-                    <p className="mx-4 mt-2 text-[1rem] font-semibold">1</p>
-                    <button className="p-1 text-sm w-[4rem]  text-center font-bold text-white bg-green-600 rounded-md">
+                    <p className="mx-4 mt-2 text-xs text-[1rem] font-semibold">1</p>
+                    <button className="p-1 md:text-sm w-[4rem]  text-center font-bold text-white bg-green-600 rounded-md">
                       <i className="fa-solid text-[1rem] text-white fa-minus"></i>
                     </button>
                   </div>
@@ -60,27 +66,27 @@ export default function () {
             </div>    
           </div>
         </div>
-        <div className=" w-1/4 rounded-md h-3/4 overflow-hidden p-3 border border-gray-400 shadow-sm">
+        <div className="w-full p-3 border border-gray-400 rounded-md shadow-sm md:w-1/4 h-3/4">
         <h3 className="text-[1.5rem] w-11/12 p-2 border-b-4 border-black text-center m-2 text-black font-semibold">Order Details</h3>
         <div className="w-full">
             <div className="flex items-center justify-between p-2">
-                <p className="text-[1rem] text-black font-semibold">Order Subtotal:</p>
-                <p className="text-[1rem] text-black font-semibold">6,490.00</p>
+                <p className="text-[1rem] text-gray-700 font-semibold">Order Subtotal:</p>
+                <p className="text-[1rem] text-gray-700 font-semibold">6,490.00</p>
             </div>
             <div className="flex items-center justify-between p-2">
-                <p className="text-[1rem] text-black font-semibold">Unit Quantity:</p>
-                <p className="text-[1rem] text-black font-semibold">1</p>
+                <p className="text-[1rem] text-gray-700 font-semibold">Unit Quantity:</p>
+                <p className="text-[1rem] text-gray-700 font-semibold">1</p>
             </div>
             <div className="flex items-center justify-between p-2">
-                <p className="text-[1rem] text-black font-semibold">Shipping:</p>
-                <p className="text-[1rem] text-black font-semibold">0.00</p>
+                <p className="text-[1rem] text-gray-700 font-semibold">Shipping:</p>
+                <p className="text-[1rem] text-gray-700 font-semibold">0.00</p>
             </div>
             <div className="flex items-center justify-between p-2">
-                <p className="text-[1rem] text-black font-semibold">Total:</p>
-                <p className="text-[1rem] text-black font-semibold">6,490.00</p>
+                <p className="text-[1rem] text-gray-700 font-semibold">Total:</p>
+                <p className="text-[1rem] text-gray-700 font-semibold">6,490.00</p>
             </div>
             <div className="flex items-center justify-center p-2">
-                <button className="p-2 w-[12rem] text-center text-white font-semibold bg-red-600 rounded-md">
+                <button onClick={checkout} className="p-2 w-[12rem] text-center text-white font-semibold bg-red-600 rounded-md">
                 Proceed to Checkout
                 </button>
             </div>
