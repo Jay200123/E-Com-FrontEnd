@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 export default function () {
   const navigate = useNavigate();
 
-  const home = ()=>{
+  const home = () => {
     navigate("/");
-  }
+  };
 
   const signIn = () => {
     navigate("/signin");
@@ -15,7 +15,10 @@ export default function () {
     navigate("/signup");
   };
 
-  
+  const cart = () => {
+    navigate("/sample/cart");
+  };
+
   return (
     <nav className="w-full h-[3.75rem] border border-gray-300 flex items-center justify-between p-1">
       <div className="flex items-center">
@@ -24,7 +27,12 @@ export default function () {
       </div>
       <div className="flex items-center justify-center">
         <ul className="flex flex-row items-start justify-start">
-          <li onClick={home} className="m-3 text-sm font-semibold cursor-pointer">Home</li>
+          <li
+            onClick={home}
+            className="m-3 text-sm font-semibold cursor-pointer"
+          >
+            Home
+          </li>
           <li className="m-3 text-sm font-semibold">Shop</li>
           <li className="m-3 text-sm font-semibold">About</li>
           <li className="m-3 text-sm font-semibold">Contact Us</li>
@@ -42,7 +50,11 @@ export default function () {
           onClick={signUp}
           className="m-2 text-lg cursor-pointer fa-solid fa-right-to-bracket"
         ></i>
-        <i className="m-2 text-lg fa-solid fa-cart-shopping"></i>
+        <i
+          title="Cart"
+          onClick={cart}
+          className="m-2 text-lg fa-solid cursor-pointer fa-cart-shopping"
+        ></i>
       </div>
     </nav>
   );
