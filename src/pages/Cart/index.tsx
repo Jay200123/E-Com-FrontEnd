@@ -8,7 +8,7 @@ export default function () {
           <h3 className="text-3xl text-left m-1 w-4/5 border-b-4 border-black p-2">
             My Cart
           </h3>
-          <div className="w-full h-full overflow-y-auto flex flex-col justify-between p-3">
+          <div className="w-full h-full overflow-y-auto flex flex-col justify-between mt-2.5">
             <div className="flex items-center w-full h-[15rem] border border-gray-800 rounded-md mb-6 shadow-md">
               <div className="flex items-center justify-center w-1/4 h-full">
                 <img
@@ -65,7 +65,7 @@ export default function () {
         <h3 className="text-[1.5rem] w-11/12 p-2 border-b-4 border-black text-center m-2 text-black font-semibold">Order Details</h3>
         <div className="w-full">
             <div className="flex items-center justify-between p-2">
-                <p className="text-[1rem] text-black font-semibold">Subtotal:</p>
+                <p className="text-[1rem] text-black font-semibold">Order Subtotal:</p>
                 <p className="text-[1rem] text-black font-semibold">6,490.00</p>
             </div>
             <div className="flex items-center justify-between p-2">
