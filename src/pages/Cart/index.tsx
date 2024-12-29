@@ -8,8 +8,8 @@ export default function () {
           <h3 className="text-3xl text-left m-1 w-4/5 border-b-4 border-black p-2">
             My Cart
           </h3>
-          <div className="w-full h-full overflow-y-auto flex flex-col justify-between mt-2.5">
-            <div className="flex items-center w-full h-[15rem] border border-gray-800 rounded-md mb-6 shadow-md">
+          <div className="w-full h-full overflow-y-auto flex flex-col justify-start mt-2.5">
+            <div className="flex items-center w-full h-[15rem] border border-gray-800 rounded-md mb-4 shadow-md">
               <div className="flex items-center justify-center w-1/4 h-full">
                 <img
                   src={ImageTwo}
@@ -57,8 +57,7 @@ export default function () {
                   </p>
                 </div>
               </div>
-            </div>
-         
+            </div>    
           </div>
         </div>
         <div className=" w-1/4 rounded-md h-3/4 overflow-hidden p-3 border border-gray-400 shadow-sm">
