@@ -13,7 +13,9 @@ import {
   ComputerProducts,
   LaptopProducts,
   Profile,
-  ProductDetails
+  ProductDetails,
+  Checkout,
+  Cart  
 } from "./pages";
 
 import { 
@@ -32,6 +34,8 @@ export default function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/sample/profile" element={<Profile />} />
           <Route path="/sample/product" element={<ProductDetails />} />
+          <Route path="/sample/checkout" element={<Checkout />} />
+          <Route path="/sample/cart" element={<Cart />} />
         </Route>
 
         <Route element={<ProductLayout />}>
