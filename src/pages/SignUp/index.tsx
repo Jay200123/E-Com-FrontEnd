@@ -45,7 +45,7 @@ export default function () {
         <input
           type="file"
           placeholder="Upload Profile Picture"
-          className="p-1 mb-4 text-[1rem] border-b border-gray-700 rounded-sm"
+          className="p-1 mb-4 text-[1rem]  rounded-sm"
         />
         <div className="flex items-center mb-4 space-x-2">
           <input type="checkbox" className="p-2" />
