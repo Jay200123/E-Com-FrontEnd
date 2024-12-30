@@ -2,7 +2,6 @@ import { Carousel } from "../../components";
 import ImageOne from "../../assets/mobile-2.jpeg";
 import ImageTwo from "../../assets/laptop-2.jpg";
 import ImageThree from "../../assets/computer-two.jpg";
-import ImageFour from "../../assets/mobile-3jpeg.jpg";
 import ImageFive from "../../assets/laptop3.avif";
 import { useProductStore } from "../../state/store";
 import { useNavigate } from "react-router-dom";
@@ -23,19 +22,11 @@ export default function () {
   const computers = () => {
     navigate("/products/computers");
   };
-
-  const product = ()=>{
-    navigate("/sample/product") 
-  }
-
-  // const { data, isLoading } = useQuery({
-  //   queryKey: ["products"],
-  //   queryFn: getAllProducts,
-  // });
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
+  
+  const { data } = useQuery({
+    queryKey: ["products"],
+    queryFn: getAllProducts,
+  });
 
   return (
     <div className="flex flex-col justify-center w-full h-full p-2">
@@ -86,59 +77,34 @@ export default function () {
         <h3 className="text-3xl font-bold text-left">New Arrivals</h3>
         <div className="flex items-center w-full overflow-x-auto">
           <div className="flex flex-nowrap">
-            <div onClick={product} className="min-w-[18.75rem] max-w-[25rem] cursor-pointer transition-all duration-500 h-auto p-2 flex-shrink-0 border border-gray-300 rounded-md m-4">
-              <img src={ImageFour} className="object-cover w-full h-64" />
-              <p className="font-semibold">Samsung A05s</p>
-              <div className="flex items-center justify-between">
-                <p className="font-semibold">₱6,490.00</p>
-                <i className="text-2xl transition-all duration-500 cursor-pointer fa-solid hover:text-red-500 fa-cart-shopping"></i>
+            {data?.map((p) => (
+              <div
+                key={p._id}
+                onClick={() => navigate(`/product/${p?._id}`)}
+                className="min-w-[18.75rem] max-w-[25rem] cursor-pointer transition-all duration-500 h-auto p-2 flex-shrink-0 border border-gray-300 rounded-md m-4"
+              >
+                {p?.image?.length > 1 ? (
+                  <img
+                    className="object-cover w-full h-64"
+                    src={
+                      p?.image[Math.floor(Math.random() * p?.image.length)]?.url
+                    }
+                    alt="test image"
+                  />
+                ) : (
+                  <img
+                    className="object-cover w-full h-64"
+                    src={p?.image[0]?.url || ""}
+                    alt="image"
+                  />
+                )}
+                <p className="font-semibold">{p.product_name}</p>
+                <div className="flex items-center justify-between">
+                  <p className="font-semibold">₱{p.price}</p>
+                  <i className="text-2xl transition-all duration-500 cursor-pointer fa-solid hover:text-red-500 fa-cart-shopping"></i>
+                </div>
               </div>
-            </div>
-
-            <div className="min-w-[18.75rem] max-w-[25rem] cursor-pointer transition-all duration-500 h-auto p-2 flex-shrink-0 border border-gray-300 rounded-md m-4">
-              <img src={ImageFour} className="object-cover w-full h-64" />
-              <p className="font-semibold">Samsung A05s</p>
-              <div className="flex items-center justify-between">
-                <p className="font-semibold">₱6,490.00</p>
-                <i className="text-2xl transition-all duration-500 cursor-pointer fa-solid hover:text-red-500 fa-cart-shopping"></i>
-              </div>
-            </div>
-
-            <div className="min-w-[18.75rem] max-w-[25rem] cursor-pointer transition-all duration-500 h-auto p-2 flex-shrink-0 border border-gray-300 rounded-md m-4">
-              <img src={ImageFour} className="object-cover w-full h-64" />
-              <p className="font-semibold">Samsung A05s</p>
-              <div className="flex items-center justify-between">
-                <p className="font-semibold">₱6,490.00</p>
-                <i className="text-2xl transition-all duration-500 cursor-pointer fa-solid hover:text-red-500 fa-cart-shopping"></i>
-              </div>
-            </div>
-
-            <div className="min-w-[18.75rem] max-w-[25rem] cursor-pointer transition-all duration-500 h-auto p-2 flex-shrink-0 border border-gray-300 rounded-md m-4">
-              <img src={ImageFour} className="object-cover w-full h-64" />
-              <p className="font-semibold">Samsung A05s</p>
-              <div className="flex items-center justify-between">
-                <p className="font-semibold">₱6,490.00</p>
-                <i className="text-2xl transition-all duration-500 cursor-pointer fa-solid hover:text-red-500 fa-cart-shopping"></i>
-              </div>
-            </div>
-
-            <div className="min-w-[18.75rem] max-w-[25rem] cursor-pointer transition-all duration-500 h-auto p-2 flex-shrink-0 border border-gray-300 rounded-md m-4">
-              <img src={ImageFour} className="object-cover w-full h-64" />
-              <p className="font-semibold">Samsung A05s</p>
-              <div className="flex items-center justify-between">
-                <p className="font-semibold">₱6,490.00</p>
-                <i className="text-2xl transition-all duration-500 cursor-pointer fa-solid hover:text-red-500 fa-cart-shopping"></i>
-              </div>
-            </div>
-
-            <div className="min-w-[18.75rem] max-w-[25rem] cursor-pointer transition-all duration-500 h-auto p-2 flex-shrink-0 border border-gray-300 rounded-md m-4">
-              <img src={ImageFour} className="object-cover w-full h-64" />
-              <p className="font-semibold">Samsung A05s</p>
-              <div className="flex items-center justify-between">
-                <p className="font-semibold">₱6,490.00</p>
-                <i className="text-2xl transition-all duration-500 cursor-pointer fa-solid hover:text-red-500 fa-cart-shopping"></i>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
