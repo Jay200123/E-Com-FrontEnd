@@ -76,12 +76,27 @@ export default function () {
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           value={formik.values.contact_number}
-          placeholder="Phone"
+          placeholder="Contact Number"
           className="p-1 mb-4 text-[1rem] border-b border-gray-700 rounded-sm"
         />
         <input
           type="text"
+          name="address"
+          id="address"
+          onBlur={formik.handleBlur}
+          onChange={formik.handleChange}
+          value={formik.values.address}
           placeholder="Address"
+          className="p-1 mb-4 text-[1rem] border-b border-gray-700 rounded-sm"
+        />
+         <input
+          type="text"
+          name="city"
+          id="city"
+          onBlur={formik.handleBlur}
+          onChange={formik.handleChange}
+          value={formik.values.city}
+          placeholder="City"
           className="p-1 mb-4 text-[1rem] border-b border-gray-700 rounded-sm"
         />
         <input
