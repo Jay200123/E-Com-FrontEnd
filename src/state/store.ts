@@ -1,3 +1,4 @@
+import { useAuthenticationStore } from "./auth";
 import { useProductStore } from "./api/product";
 
-export { useProductStore };
+export { useAuthenticationStore, useProductStore };
