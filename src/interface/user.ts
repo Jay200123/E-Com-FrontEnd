@@ -12,11 +12,12 @@ interface User {
 }
 
 interface UserState {
+  message: string;
   getAllUsers: () => Promise<void>;
   getUserById: (id: string) => Promise<void>;
   addUser: (formData: FormData) => Promise<void>;
-  updateUser: (id: string, formData: FormData) => Promise<void>;
-  deleteUser: (id: string) => Promise<void>;
+  updateUserById: (id: string, formData: FormData) => Promise<void>;
+  deleteUserById: (id: string) => Promise<void>;
 }
 
 export type { User, UserState };
