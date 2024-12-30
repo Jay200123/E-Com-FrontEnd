@@ -1,7 +1,10 @@
 import ImageOne from "../../assets/user.jpg";
 import ImageTwo from "../../assets/mobile-3jpeg.jpg";
+import { useAuthenticationStore } from "../../state/store";
 
 export default function () {
+  const { user } = useAuthenticationStore();
+  console.log(user);
   return (
     <>
       <div className="flex flex-col items-center w-full h-screen md:flex-row">
@@ -20,7 +23,7 @@ export default function () {
               </h3>
               <p className="text-[1rem]">johndoe@gmail.com</p>
               <p className="text-[1rem]">+639 994 339 4563</p>
-              <div className="flex w-full justify-between p-2">
+              <div className="flex justify-between w-full p-2">
                 <button className="p-2 w-[6rem] rounded-md border text-center bg-yellow-300 text-white border-white">
                   Packed
                 </button>
