@@ -16,7 +16,7 @@ export default function () {
   };
 
   const cart = () => {
-    navigate("/sample/cart");
+    navigate("/cart");
   };
 
   return (
@@ -53,7 +53,7 @@ export default function () {
         <i
           title="Cart"
           onClick={cart}
-          className="m-2 text-lg fa-solid cursor-pointer fa-cart-shopping"
+          className="m-2 text-lg cursor-pointer fa-solid fa-cart-shopping"
         ></i>
       </div>
     </nav>
