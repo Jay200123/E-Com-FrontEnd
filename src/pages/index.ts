@@ -1,4 +1,5 @@
 import Home from "./Home";
+import UserHome from "./Home/UserHome";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import MobileProducts from "./Products/MobileProducts";
@@ -11,6 +12,7 @@ import Cart from "./Cart";
 
 export {
   Home,
+  UserHome,
   SignIn,
   SignUp,
   MobileProducts,
