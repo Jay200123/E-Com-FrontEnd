@@ -11,7 +11,7 @@ export const useProductStore = create<ProductState>((set) => ({
     return res.data.details;
   },
   getProductById: async (id: string) => {
-    const res = await axios.get(`http://localhost:4000/api/v1/products/${id}`);
+    const res = await axios.get(`http://localhost:4000/api/v1/product/${id}`);
     set({ message: "Product record found", loading: false });
     return res.data.details;
   },
