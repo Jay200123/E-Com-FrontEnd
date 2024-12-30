@@ -7,6 +7,7 @@ import {
 
 import {
   Home,
+  UserHome,
   SignIn,
   SignUp,
   MobileProducts,
@@ -15,13 +16,12 @@ import {
   Profile,
   ProductDetails,
   Checkout,
-  Cart  
+  Cart,
 } from "./pages";
 
-import { 
-  MainLayout,
-  ProductLayout
-} from "./layouts";
+import { ProtectedRoute } from "./components";
+
+import { MainLayout, ProductLayout, CustomerLayout } from "./layouts";
 
 export default function App() {
   const Router = createBrowserRouter(
@@ -32,16 +32,72 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/sample/profile" element={<Profile />} />
-          <Route path="/sample/product" element={<ProductDetails />} />
-          <Route path="/sample/checkout" element={<Checkout />} />
-          <Route path="/sample/cart" element={<Cart />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/cart" element={<Cart />} />
         </Route>
 
         <Route element={<ProductLayout />}>
           <Route path="/products/mobiles" element={<MobileProducts />} />
           <Route path="/products/laptops" element={<LaptopProducts />} />
           <Route path="/products/computers" element={<ComputerProducts />} />
+        </Route>
+
+        {/* Customer Layout */}
+        <Route element={<CustomerLayout />}>
+          <Route path="/users" element={<UserHome />} />
+          <Route path="/user/profile" element={<Profile />} />
+
+          <Route element={<ProductLayout />}>
+            <Route
+              path="/user/products/mobiles"
+              element={
+                <ProtectedRoute userRole={["User"]}>
+                  <MobileProducts />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/user/products/laptops"
+              element={
+                <ProtectedRoute userRole={["User"]}>
+                  <LaptopProducts />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/user/products/computers"
+              element={
+                <ProtectedRoute userRole={["User"]}>
+                  <ComputerProducts />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
+
+          <Route
+            path="/user/product"
+            element={
+              <ProtectedRoute userRole={["User"]}>
+                <ProductDetails />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/user/checkout"
+            element={
+              <ProtectedRoute userRole={["User"]}>
+                <Checkout />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/user/cart"
+            element={
+              <ProtectedRoute userRole={["User"]}>
+                <Cart />
+              </ProtectedRoute>
+            }
+          />
         </Route>
       </Route>
     )
