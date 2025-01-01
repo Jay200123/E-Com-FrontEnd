@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import axios from "axios";
+import api from "../axios";
 import { AuthenticationState } from "../../interface";
 import { encryptedSessionStorage } from "../../storage";
 
@@ -10,7 +10,7 @@ export const useAuthenticationStore = create<AuthenticationState>()(
       user: null,
       isAuthorized: false,
       login: async (email, password) => {
-        const res = await axios.post("http://localhost:4000/api/v1/login", {
+        const res = await api.post("/login", {
           email,
           password,
         });
