@@ -9,6 +9,7 @@ interface Product {
   description: string;
   color: string;
   quantity: number;
+  orderQuantity: number;  
   image: Image[];
 }
 
