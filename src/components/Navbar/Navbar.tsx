@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import { useCartStore } from "../../state/store";
 
 export default function () {
+  const { cart:CartItems } = useCartStore();
   const navigate = useNavigate();
 
   const home = () => {
@@ -38,7 +40,7 @@ export default function () {
           <li className="m-3 text-sm font-semibold">Contact Us</li>
         </ul>
       </div>
-      <div className="p-1">
+      <div className="flex items-center justify-between p-1">
         <i className="m-2 text-lg fa-solid fa-magnifying-glass"></i>
         <i
           title="Sign In"
@@ -50,11 +52,17 @@ export default function () {
           onClick={signUp}
           className="m-2 text-lg cursor-pointer fa-solid fa-right-to-bracket"
         ></i>
+        <div className="relative p-2 m-1">
         <i
           title="Cart"
           onClick={cart}
           className="m-2 text-lg cursor-pointer fa-solid fa-cart-shopping"
-        ></i>
+        >
+        </i>
+        <p className="absolute w-5 h-5 text-sm text-center text-white bg-red-600 rounded-full top-1 right-1">
+          {CartItems?.length}
+          </p>
+        </div>
       </div>
     </nav>
   );
