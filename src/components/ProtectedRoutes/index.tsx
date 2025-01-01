@@ -15,8 +15,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   const { user, isAuthorized } = useAuthenticationStore();
 
   if (!user && !isAuthorized) {
-    toast.error("You need to login first"); 
-    return <Navigate to="/" replace />;
+    return <Navigate to="/signin" replace />;
   }
 
   if (user && !userRole.includes(user.role)) {
