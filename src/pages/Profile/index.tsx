@@ -1,10 +1,23 @@
-import ImageOne from "../../assets/user.jpg";
 import ImageTwo from "../../assets/mobile-3jpeg.jpg";
-import { useAuthenticationStore } from "../../state/store";
+import { useAuthenticationStore, useUserStore } from "../../state/store";
+import { useQuery } from "@tanstack/react-query";
+import { User } from "../../interface";
 
 export default function () {
   const { user } = useAuthenticationStore();
-  console.log(user);
+  const { getUserById } = useUserStore();
+
+  const { data } = useQuery<User>({
+    queryKey: ["user", user?._id],
+    queryFn: () => getUserById(user?._id!),
+    enabled: !!user?._id,
+  });
+
+  const randomImage =
+    Array.isArray(data?.image) && data.image.length > 0
+      ? data.image[Math.floor(Math.random() * data.image.length)]
+      : null;
+
   return (
     <>
       <div className="flex flex-col items-center w-full h-screen md:flex-row">
@@ -12,17 +25,17 @@ export default function () {
           <div className="flex items-center justify-start w-full rounded-sm shadow-md h-1/3">
             <div className="w-1/3 h-full p-2">
               <img
-                src={ImageOne}
-                alt="user"
+                src={randomImage?.url}
+                alt={randomImage?.originalname}
                 className="w-20 h-20 rounded-full md:w-40 md:h-40"
               />
             </div>
             <div className="w-2/3 h-full p-2 overflow-hidden border border-white">
               <h3 className="text-[1rem] font-medium md:text-[1.5rem] md:font-bold">
-                Welcome, John Doe
+                Welcome, {data?.fullname}
               </h3>
-              <p className="text-[1rem]">johndoe@gmail.com</p>
-              <p className="text-[1rem]">+639 994 339 4563</p>
+              <p className="text-[1rem]">{data?.email}</p>
+              <p className="text-[1rem]">{data?.contact_number}</p>
               <div className="flex justify-between w-full p-2">
                 <button className="p-2 w-[6rem] rounded-md border text-center bg-yellow-300 text-white border-white">
                   Packed
@@ -50,8 +63,9 @@ export default function () {
                 </label>
                 <input
                   type="text"
-                  placeholder="John Doe"
-                  className="p-1 mb-4 text-[1rem] border-b border-gray-300 rounded-sm"
+                  readOnly
+                  placeholder={data?.fullname}
+                  className="overflow-hidden placeholder:text-black p-1 mb-4 text-[1rem] border-b border-gray-300 rounded-sm"
                 />
               </div>
               <div className="flex flex-col w-1/2 p-2">
@@ -60,8 +74,9 @@ export default function () {
                 </label>
                 <input
                   type="text"
-                  placeholder="+639 994 339 4563"
-                  className="p-1 mb-4 text-[1rem] border-b border-gray-300 rounded-sm"
+                  readOnly
+                  placeholder={data?.contact_number}
+                  className="overflow-hidden placeholder:text-black p-1 mb-4 text-[1rem] border-b border-gray-300 rounded-sm"
                 />
               </div>
             </div>
@@ -72,8 +87,9 @@ export default function () {
                 </label>
                 <input
                   type="text"
-                  placeholder=" 123 Main St. New York, NY"
-                  className="p-1 mb-4 text-[1rem] border-b border-gray-300 rounded-sm"
+                  readOnly
+                  placeholder={data?.address}
+                  className="overflow-hidden placeholder:text-black first-letter:p-1 mb-4 text-[1rem] border-b border-gray-300 rounded-sm"
                 />
               </div>
               <div className="flex flex-col w-1/2 p-2">
@@ -82,8 +98,9 @@ export default function () {
                 </label>
                 <input
                   type="text"
-                  placeholder=" New York"
-                  className="p-1 mb-4 text-[1rem] border-b border-gray-300 rounded-sm"
+                  readOnly
+                  placeholder={data?.city}
+                  className="overflow-hidden placeholder:text-black p-1 mb-4 text-[1rem] border-b border-gray-300 rounded-sm"
                 />
               </div>
             </div>
@@ -94,8 +111,9 @@ export default function () {
                 </label>
                 <input
                   type="text"
-                  placeholder=" johndoe@gmail.com"
-                  className="p-1 mb-4 text-[1rem] border-b border-gray-300 rounded-sm"
+                  readOnly
+                  placeholder={data?.email}
+                  className="overflow-hidden placeholder:text-black p-1 mb-4 text-[1rem] border-b border-gray-300 rounded-sm"
                 />
               </div>
             </div>
@@ -107,8 +125,8 @@ export default function () {
             Pending Orders (1)
           </h3>
           <h3 className="font-bold text-[1rem] text-center md:text-[1.5rem] md:font-bold">
-                _________________________________________________________
-              </h3>
+            _________________________________________________________
+          </h3>
           <div className="flex flex-col w-full h-full p-2 overflow-y-auto">
             <div className="flex items-center w-full h-[12rem] border border-gray-800 rounded-md mb-4 shadow-md">
               <div className="flex items-center justify-center w-1/4 h-full ">
