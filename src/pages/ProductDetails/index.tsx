@@ -5,13 +5,24 @@ import { useProductStore } from "../../state/store";
 export default function () {
   const { id } = useParams<{ id: string }>();
 
-  const { getProductById } = useProductStore();
+  const { getAllProducts, getProductById } = useProductStore();
+
+  const { data: products } = useQuery({
+    queryKey: ["products"],
+    queryFn: getAllProducts,
+  });
 
   const { data } = useQuery({
     queryKey: ["product", id],
     queryFn: () => getProductById(id!),
     enabled: !!id,
   });
+
+  const filteredProducts = products?.filter((p) =>
+    p?.product_name?.includes(data?.product_name || "")
+  );
+
+  const productColors = filteredProducts?.map((p) => p?.color?.toLowerCase());
 
   const back = () => {
     window.history.back();
@@ -43,15 +54,21 @@ export default function () {
           )}
         </div>
         <div className="flex flex-col w-1/2 h-full p-2 justify-evenly">
-          <h3 className="text-2xl text-center">{data?.product_name} ({data?.color})</h3>
+          <h3 className="text-2xl text-center">
+            {data?.product_name} ({data?.color})
+          </h3>
           <h3 className="text-lg">Product Description:</h3>
           <p className="text-sm">{data?.description}</p>
           <h3 className="text-lg">Unit Price:</h3>
           <p className="text-sm">₱{data?.price}</p>
           <h3 className="text-lg">Colors Available:</h3>
           <div className="flex space-x-4">
-            <div className="w-8 h-8 bg-black rounded-full"></div>
-            <div className="w-8 h-8 bg-green-500 rounded-full"></div>
+            {productColors?.map((color, index) => (
+              <div
+                key={`${color}-${index}`}
+                className={`w-8 h-8 bg-${color} border border-black rounded-full`}
+              ></div>
+            ))}
           </div>
 
           <h3 className="text-lg">Available Stocks:</h3>
