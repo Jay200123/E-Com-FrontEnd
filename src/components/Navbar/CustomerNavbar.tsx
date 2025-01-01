@@ -10,20 +10,19 @@ export default function () {
     navigate("/users");
   };
 
-  const profile = ()=>{
+  const profile = () => {
     navigate("/user/profile");
-  }
+  };
 
   const handleLogout = async () => {
     try {
-      await logout()
-      navigate('/signin')
-      toast.success('Successfully Log Out')
+      await logout();
+      navigate("/signin");
+      toast.success("Successfully Log Out");
     } catch (error) {
-      toast.error('Error Logging Out')
+      toast.error("Error Logging Out");
     }
-  }
-
+  };
 
   const cart = () => {
     navigate("/user/cart");
@@ -56,14 +55,14 @@ export default function () {
           className="m-2 text-lg cursor-pointer fa-regular fa-circle-user"
         ></i>
         <i
-          title="Logout"
-          onClick={handleLogout}
-          className="m-2 text-lg cursor-pointer fa-solid fa-right-to-bracket"
-        ></i>
-        <i
           title="Cart"
           onClick={cart}
           className="m-2 text-lg cursor-pointer fa-solid fa-cart-shopping"
+        ></i>
+        <i
+          title="Logout"
+          onClick={handleLogout}
+          className="m-2 text-lg cursor-pointer fa-solid fa-right-to-bracket"
         ></i>
       </div>
     </nav>
