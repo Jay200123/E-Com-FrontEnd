@@ -3,14 +3,14 @@ import ImageOne from "../../assets/mobile-2.jpeg";
 import ImageTwo from "../../assets/laptop-2.jpg";
 import ImageThree from "../../assets/computer-two.jpg";
 import ImageFive from "../../assets/laptop3.avif";
-import { useProductStore, useCartStore } from "../../state/store";
+import { useProductStore } from "../../state/store";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { FaStar } from "react-icons/fa";
 
 export default function () {
   const navigate = useNavigate();
   const { getAllProducts } = useProductStore();
-  const { addProduct } = useCartStore(); 
 
   const mobiles = () => {
     navigate("/products/mobiles");
@@ -23,7 +23,7 @@ export default function () {
   const computers = () => {
     navigate("/products/computers");
   };
-  
+
   const { data } = useQuery({
     queryKey: ["products"],
     queryFn: getAllProducts,
@@ -81,7 +81,7 @@ export default function () {
             {data?.map((p) => (
               <div
                 key={p._id}
-                // onClick={() => navigate(`/product/${p?._id}`)}
+                onClick={() => navigate(`/product/${p?._id}`)}
                 className="min-w-[18.75rem] max-w-[25rem] cursor-pointer transition-all duration-500 h-auto p-2 flex-shrink-0 border border-gray-300 rounded-md m-4"
               >
                 {p?.image?.length > 1 ? (
@@ -102,7 +102,13 @@ export default function () {
                 <p className="font-semibold">{p.product_name}</p>
                 <div className="flex items-center justify-between">
                   <p className="font-semibold">₱{p.price}</p>
-                  <i onClick={()=>addProduct(p)} className="text-2xl transition-all duration-500 cursor-pointer fa-solid hover:text-red-500 fa-cart-shopping"></i>
+                  <div className="flex items-center flex-start">
+                    <FaStar className="text-yellow-500 " />
+                    <FaStar className="text-yellow-500" />
+                    <FaStar className="text-yellow-500" />
+                    <FaStar className="text-yellow-500" />
+                    <FaStar className="text-yellow-500" />
+                  </div>
                 </div>
               </div>
             ))}
