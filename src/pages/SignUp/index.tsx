@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function () {
   const navigate = useNavigate();
-  const { message, addUser } = useUserStore();
+  const { addUser } = useUserStore();
 
   const formik = useFormik({
     initialValues: {
@@ -34,7 +34,7 @@ export default function () {
 
       try {
         await addUser(formData);
-        toast.success(message);
+        toast.success("User registered successfully");
         navigate("/signin");
       } catch (err) {
         toast.error("Error can't register user");
@@ -46,14 +46,14 @@ export default function () {
       onSubmit={formik.handleSubmit}
       className="flex items-center w-full h-[36rem] rounded-sm shadow-md"
     >
-      <div className="w-1/2 h-full">
+      <div className="hidden w-1/2 h-full md:block">
         <img
           src={ImageOne}
           alt="Image"
-          className="object-cover w-full h-full rounded-l-md"
+          className="object-cover w-full h-full"
         />
       </div>
-      <div className="flex flex-col w-1/2 h-full p-4">
+      <div className="flex flex-col w-full h-full p-4 md:w-1/2">
         <h3 className="mb-2 text-3xl font-semibold">Sign Up</h3>
         <p className="mb-4 text-[1rem] text-gray-600">
           Already have an account?
