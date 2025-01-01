@@ -25,7 +25,7 @@ export default function () {
     return acc + product.orderQuantity;
   }, 0);
 
-  let shipping = 50.0;
+  let shipping = cart && cart.length > 0 ? 50 : 0; 
 
   if (totalAmount > 5000) {
     shipping = 0;
