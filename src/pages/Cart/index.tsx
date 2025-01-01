@@ -12,10 +12,10 @@ export default function () {
   const { cart, incrementQuantity, decrementQuantity, removeProduct } =
     useCartStore();
 
-    const handleRemove = async(id: string)=>{
-        removeProduct(id)
-        toast.success("Product removed from cart")
-    }
+  const handleRemove = async (id: string) => {
+    removeProduct(id);
+    toast.success("Product removed from cart");
+  };
 
   const totalAmount = cart.reduce((acc, product) => {
     return acc + product.price * product.orderQuantity;
@@ -25,7 +25,7 @@ export default function () {
     return acc + product.orderQuantity;
   }, 0);
 
-  let shipping = cart && cart.length > 0 ? 50 : 0; 
+  let shipping = cart && cart.length > 0 ? 50 : 0;
 
   if (totalAmount > 5000) {
     shipping = 0;
@@ -39,7 +39,9 @@ export default function () {
             My Cart
           </h3>
           <div className="relative w-full h-full overflow-y-auto flex flex-col justify-start mt-2.5">
-            <h3 className="absolute text-sm font-medium md:font-bold md:text-lg">{cart && cart.length > 0 ? "" : "No items in the cart"}</h3>
+            <h3 className="absolute text-sm font-medium md:font-bold md:text-lg">
+              {cart && cart.length > 0 ? "" : "No items in the cart"}
+            </h3>
             {cart?.map((product, index) => (
               <div
                 key={index}
@@ -96,12 +98,23 @@ export default function () {
                       <p className="mx-4 mt-2 text-xs text-[1rem] font-semibold">
                         {product?.orderQuantity}
                       </p>
-                      <button
-                        onClick={() => decrementQuantity(product?._id)}
-                        className="p-1 md:text-sm w-[4rem]  text-center font-bold text-white bg-green-600 rounded-md"
-                      >
-                        <i className="fa-solid text-[1rem] text-white fa-minus"></i>
-                      </button>
+                      {product.orderQuantity > 1 ? (
+                        <button
+                          onClick={() => decrementQuantity(product?._id)}
+                          className="p-1 md:text-sm w-[4rem]  text-center font-bold text-white bg-green-600 rounded-md"
+                        >
+                          <i className="fa-solid text-[1rem] text-white fa-minus"></i>
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() =>
+                            toast.error("Minimum quantity reached")
+                          }
+                          className="p-1 md:text-sm w-[4rem]  text-center font-bold text-white bg-gray-600 opacity-70 rounded-md"
+                        >
+                          <i className="fa-solid text-[1rem] text-white fa-minus"></i>
+                        </button>
+                      )}
                     </div>
                   </div>
                   <div className="flex items-center justify-end m-2">
@@ -155,15 +168,15 @@ export default function () {
             <div className="flex items-center justify-center p-2">
               {cart && cart.length > 0 ? (
                 <button
-                onClick={(checkout)}
-                className="p-2 w-[12rem] text-center text-white font-semibold bg-red-600 rounded-md"
-              >
-                Proceed to Checkout
-              </button>
-              ): (
+                  onClick={checkout}
+                  className="p-2 w-[12rem] text-center text-white font-semibold bg-red-600 rounded-md"
+                >
+                  Proceed to Checkout
+                </button>
+              ) : (
                 <button
-                onClick={()=>toast.error("No items in the cart")} 
-                className="p-2 w-[12rem] text-center text-white font-semibold bg-gray-500 rounded-md"
+                  onClick={() => toast.error("No items in the cart")}
+                  className="p-2 w-[12rem] text-center text-white font-semibold bg-gray-500 rounded-md"
                 >
                   Proceed to checkout
                 </button>
