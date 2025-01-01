@@ -82,6 +82,24 @@ export default function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route
+            path="/user/product/:id"
+            element={
+              <ProtectedRoute userRole={["User"]}>
+                <ProductDetails />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/user/cart"
+            element={
+              <ProtectedRoute userRole={["User"]}>
+                <Cart />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/user/checkout"
             element={
