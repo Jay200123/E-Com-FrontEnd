@@ -13,8 +13,8 @@ interface User {
 
 interface UserState {
   message: string;
-  getAllUsers: () => Promise<void>;
-  getUserById: (id: string) => Promise<void>;
+  getAllUsers: () => Promise<User[]>;
+  getUserById: (id: string) => Promise<User>;
   addUser: (formData: FormData) => Promise<void>;
   updateUserById: (id: string, formData: FormData) => Promise<void>;
   deleteUserById: (id: string) => Promise<void>;
