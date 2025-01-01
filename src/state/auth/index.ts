@@ -30,6 +30,7 @@ export const useAuthenticationStore = create<AuthenticationState>()(
         }),
           sessionStorage.removeItem("authentication");
         sessionStorage.removeItem("access");
+        sessionStorage.removeItem("cart");
       },
     }),
     {
