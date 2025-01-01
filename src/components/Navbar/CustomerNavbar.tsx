@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAuthenticationStore } from "../../state/store";
+import { useAuthenticationStore, useCartStore } from "../../state/store";
 
 export default function () {
   const navigate = useNavigate();
+  const { cart: CartItems } = useCartStore(); 
   const { logout } = useAuthenticationStore();
 
   const home = () => {
@@ -47,18 +48,23 @@ export default function () {
           <li className="m-3 text-sm font-semibold">Contact Us</li>
         </ul>
       </div>
-      <div className="p-1">
+      <div className="flex items-center justify-between p-1">
         <i className="m-2 text-lg fa-solid fa-magnifying-glass"></i>
         <i
           title="User Profile"
           onClick={profile}
           className="m-2 text-lg cursor-pointer fa-regular fa-circle-user"
         ></i>
-        <i
-          title="Cart"
-          onClick={cart}
-          className="m-2 text-lg cursor-pointer fa-solid fa-cart-shopping"
-        ></i>
+        <div className="relative p-1">
+          <i
+            title="Cart"
+            onClick={cart}
+            className="m-2 text-lg cursor-pointer fa-solid fa-cart-shopping"
+          ></i>
+          <p className="absolute top-0 right-0 w-5 h-5 p-[1px] text-sm text-center text-white bg-red-600 rounded-full">
+            {CartItems?.length}
+          </p>
+        </div>
         <i
           title="Logout"
           onClick={handleLogout}
