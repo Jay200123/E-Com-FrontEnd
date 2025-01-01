@@ -1,18 +1,30 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { useProductStore } from "../../state/store";
+import { useProductStore, useCartStore } from "../../state/store";
+import { Product } from "../../interface";
+import { useState } from "react";
 
 export default function () {
   const { id } = useParams<{ id: string }>();
+  const[quantity, setQuantity] = useState(1);
+  
+  const incrementQuantity = () => {
+    setQuantity(quantity + 1);  
+  }
+
+  const decrementQuantity = () => { 
+    setQuantity(quantity - 1); 
+  }
 
   const { getAllProducts, getProductById } = useProductStore();
+  const { addProduct } = useCartStore();  
 
   const { data: products } = useQuery({
     queryKey: ["products"],
     queryFn: getAllProducts,
   });
 
-  const { data } = useQuery({
+  const { data } = useQuery<Product>({
     queryKey: ["product", id],
     queryFn: () => getProductById(id!),
     enabled: !!id,
@@ -80,33 +92,33 @@ export default function () {
               <div className="flex items-center border border-gray-300 rounded-md">
                 <button
                   className="px-3 py-1 text-lg text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-l-md"
-                  onClick={() => {
-                    // Logic to decrement quantity
-                  }}
+                  onClick={decrementQuantity}
                 >
                   -
                 </button>
                 <input
                   type="number"
+                  readOnly
                   className="w-12 text-center border-l border-r border-gray-300 outline-none"
-                  value={1} // Replace with your state value
-                  onChange={(e) => {
-                    // Logic to update quantity
-                  }}
+                  value={quantity} 
+
                 />
                 <button
                   className="px-3 py-1 text-lg text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-r-md"
-                  onClick={() => {
-                    // Logic to increment quantity
-                  }}
+                  onClick={incrementQuantity}
                 >
                   +
                 </button>
               </div>
             </div>
-            <button className="w-full p-2 mt-4 text-white transition-all duration-500 bg-black rounded-md hover:opacity-85">
-              ADD TO CART
-            </button>
+            {data && (
+              <button
+                onClick={() => addProduct(data, quantity)}
+                className="w-full p-2 mt-4 text-white transition-all duration-500 bg-black rounded-md hover:opacity-85"
+              >
+                Add to Cart
+              </button>
+            )}
           </div>
         </div>
       </div>
