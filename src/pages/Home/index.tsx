@@ -10,7 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 export default function () {
   const navigate = useNavigate();
   const { getAllProducts } = useProductStore();
-  const { cart, addProduct } = useCartStore(); 
+  const { addProduct } = useCartStore(); 
 
   const mobiles = () => {
     navigate("/products/mobiles");
