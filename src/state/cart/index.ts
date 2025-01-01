@@ -5,7 +5,7 @@ import { encryptedSessionStorage } from "../../storage";
 
 type CartState = {
   cart: Product[];
-  addProduct: (product: Product) => void;
+  addProduct: (product: Product, quantity:number) => void;
   incrementQuantity: (_id: string) => void;
   decrementQuantity: (_id: string) => void;
   removeProduct: (_id: string) => void;
@@ -17,11 +17,9 @@ export const useCartStore = create<CartState>()(
     (set) => ({
       cart: [],
       quantity: 1,
-      addProduct: (product: Product) => {
+      addProduct: (product: Product, quantity: number) => {
         set((state) => {
-          const updatedCart = [...state.cart, {...product, orderQuantity: 1}];    
-          sessionStorage.setItem("cart", JSON.stringify(updatedCart));
-
+          const updatedCart = [...state.cart, {...product, orderQuantity: quantity}];  
           const existingProduct = state.cart.find((p) => p._id === product._id);
 
           if (existingProduct) {
@@ -84,7 +82,7 @@ export const useCartStore = create<CartState>()(
       },
       clearCart: () => {
         set(() => {
-          sessionStorage.removeItem("cart");
+          sessionStorage.removeItem("cart-storage");
 
           return {
             cart: [],
