@@ -6,6 +6,7 @@ import ImageFive from "../../assets/laptop3.avif";
 import { useProductStore } from "../../state/store";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { FaStar } from "react-icons/fa";
 
 export default function () {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ export default function () {
   const { data } = useQuery({
     queryKey: ["products"],
     queryFn: getAllProducts,
-  }); 
+  });
 
   return (
     <div className="flex flex-col justify-center w-full h-full p-2">
@@ -80,7 +81,7 @@ export default function () {
             {data?.map((p) => (
               <div
                 key={p._id}
-                onClick={() => navigate(`/product/${p?._id}`)}
+                onClick={() => navigate(`/user/product/${p?._id}`)}
                 className="min-w-[18.75rem] max-w-[25rem] cursor-pointer transition-all duration-500 h-auto p-2 flex-shrink-0 border border-gray-300 rounded-md m-4"
               >
                 {p?.image?.length > 1 ? (
@@ -98,10 +99,16 @@ export default function () {
                     alt="image"
                   />
                 )}
-                <p className="font-semibold">{p.product_name} ({p.color})</p>
+                <p className="font-semibold">{p.product_name}</p>
                 <div className="flex items-center justify-between">
                   <p className="font-semibold">₱{p.price}</p>
-                  <i className="text-2xl transition-all duration-500 cursor-pointer fa-solid hover:text-red-500 fa-cart-shopping"></i>
+                  <div className="flex items-center flex-start">
+                    <FaStar className="text-yellow-500 "/>
+                    <FaStar className="text-yellow-500"/>
+                    <FaStar className="text-yellow-500"/>
+                    <FaStar className="text-yellow-500"/>
+                    <FaStar className="text-yellow-500"/>
+                  </div>
                 </div>
               </div>
             ))}
