@@ -2,6 +2,7 @@ import { Brand } from "./brand";
 import { Image } from "./image";
 
 interface Product {
+  product: any;
   _id: string;
   brand: Brand;
   product_name: string;
@@ -10,6 +11,7 @@ interface Product {
   color: string;
   quantity: number;
   orderQuantity: number;  
+  category: string;
   image: Image[];
 }
 
