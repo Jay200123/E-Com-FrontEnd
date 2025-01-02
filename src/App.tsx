@@ -17,6 +17,7 @@ import {
   ProductDetails,
   Checkout,
   Cart,
+  Shop,
 } from "./pages";
 
 import { ProtectedRoute } from "./components";
@@ -40,6 +41,7 @@ export default function App() {
           <Route path="/products/mobiles" element={<MobileProducts />} />
           <Route path="/products/laptops" element={<LaptopProducts />} />
           <Route path="/products/computers" element={<ComputerProducts />} />
+          <Route path="/shop" element={<Shop />} />
         </Route>
 
         {/* Customer Layout */}
@@ -72,16 +74,23 @@ export default function App() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="/user/products/computers"
+              element={
+                <ProtectedRoute userRole={["User"]}>
+                  <ComputerProducts />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/users/shop"
+              element={
+                <ProtectedRoute userRole={["User"]}>
+                  <Shop />
+                </ProtectedRoute>
+              }
+            />
           </Route>
-
-          <Route
-            path="/user/product"
-            element={
-              <ProtectedRoute userRole={["User"]}>
-                <ProductDetails />
-              </ProtectedRoute>
-            }
-          />
 
           <Route
             path="/user/product/:id"
