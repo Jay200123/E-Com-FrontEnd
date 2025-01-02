@@ -9,6 +9,7 @@ import Profile from "./Profile";
 import ProductDetails from "./ProductDetails";
 import Checkout from "./Cart/checkout";  
 import Cart from "./Cart";
+import Shop from "./Shop";
 
 export {
   Home,
@@ -21,5 +22,6 @@ export {
   Profile,
   ProductDetails,
   Checkout,
-  Cart
+  Cart,
+  Shop,
 };
