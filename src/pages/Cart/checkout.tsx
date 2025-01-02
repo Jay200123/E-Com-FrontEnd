@@ -1,24 +1,25 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { 
+import {
   useAuthenticationStore,
-  useCartStore
+  useCartStore,
+  useOrderStore,
 } from "../../state/store";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 
 export default function () {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState<"cash" | "credit card">(
-    "credit card"
+    "cash"
   );
-
-  const { cart: CartItems, clearCart } = useCartStore();
-  const { user } = useAuthenticationStore();
 
   const togglePaymentMethod = (method: "cash" | "credit card") => {
     setPaymentMethod(method);
   };
+
+  const { cart: CartItems, clearCart } = useCartStore();
+  const { user } = useAuthenticationStore();
 
   const totalAmount = CartItems.reduce((acc, product) => {
     return acc + product.price * product.orderQuantity;
@@ -34,32 +35,39 @@ export default function () {
     shipping = 0;
   }
 
+  const { addOrder } = useOrderStore();
+
   const formik = useFormik({
     initialValues: {
-      user: user?._id,
+      user: user?._id.toString(),
       products: CartItems?.map((p) => ({
         product: p?._id,
         quantity: p?.orderQuantity,
       })),
-      payment: paymentMethod,   
-
+      payment: paymentMethod,
     },
-    onSubmit: (values) => {
-      console.log(values)
-      navigate("/users");
-      clearCart();
-      toast.success("Order Placed Successfully"); 
-    }
+    onSubmit: async (values) => {
+      try {
+        await addOrder(values);
+        clearCart();
+        toast.success("Order placed successfully");
+        navigate("/users");
+      } catch (err) {
+        console.log(err);
+      }
+    },
+  });
 
-  })
-
-  const cart = ()=>{
-    navigate("/user/cart")
-  }
+  const cart = () => {
+    navigate("/user/cart");
+  };
 
   return (
     <>
-      <form onSubmit={formik.handleSubmit} className="flex flex-col items-center w-full h-screen md:flex-row ">
+      <form
+        onSubmit={formik.handleSubmit}
+        className="flex flex-col items-center w-full h-screen md:flex-row "
+      >
         <div className="w-[70%] flex flex-col h-full border border-r-4 border-gray-500 ">
           <div className="w-full h-[30%] flex flex-col justify-center items-center">
             <h3 className="text-sm font-normal md:text-2xl md:font-bold">
@@ -70,35 +78,35 @@ export default function () {
               Information
             </h3>
             <div className="flex flex-col items-center justify-start w-full px-3 md:flex-row md:justify-between">
-              <button
-                onClick={() => togglePaymentMethod("credit card")}
-                className={`w-[10rem] p-2 text-sm rounded-md border ${
-                  paymentMethod === "credit card"
-                    ? "bg-blue-500 text-white border-blue-500"
-                    : "border-black"
-                }`}
-              >
-                <i className="mr-1 fa-solid fa-truck-fast"></i>Cash On Delivery
-              </button>
-
-              <button
+              <div
                 onClick={() => togglePaymentMethod("cash")}
-                className={`w-[10rem] p-2 text-sm rounded-md border ml-4 ${
+                className={`cursor-pointer w-[10rem] p-2 text-sm rounded-md border ${
                   paymentMethod === "cash"
                     ? "bg-blue-500 text-white border-blue-500"
                     : "border-black"
                 }`}
               >
-                <i className="mr-1 fa-solid fa-credit-card"></i>Credit Card
-              </button>
+                <i className="mr-1 fa-solid fa-truck-fast"></i>Cash On Delivery
+              </div>
 
-              <button className="w-[10rem] p-2 text-sm overflow-hidden rounded-md border border-black">
+              <div
+                onClick={() => togglePaymentMethod("credit card")}
+                className={`cursor-pointer w-[10rem] p-2 text-sm rounded-md border ml-4 ${
+                  paymentMethod === "credit card"
+                    ? "bg-blue-500 text-white border-blue-500"
+                    : "border-black"
+                }`}
+              >
+                <i className="mr-1 fa-solid fa-credit-card"></i>Credit Card
+              </div>
+
+              <div className="w-[10rem] p-2 text-sm overflow-hidden rounded-md border border-black cursor-pointer">
                 <i className="mr-1 fa-solid fa-wallet"></i> Online Payment
-              </button>
+              </div>
             </div>
           </div>
 
-          {paymentMethod === "cash" ? (
+          {paymentMethod === "credit card" ? (
             <div className="flex flex-col w-full p-2 h-[70%]">
               <h3 className="text-lg font-medium">Credit Card Information</h3>
               <div className="flex flex-col w-1/2 p-2">
@@ -157,7 +165,7 @@ export default function () {
                   </label>
                   <input
                     type="text"
-                    readOnly  
+                    readOnly
                     placeholder={user?.fullname}
                     className="placeholder:text-black p-1 mb-4 text-[1rem] border border-gray-300 rounded-md"
                   />
@@ -206,7 +214,7 @@ export default function () {
                   <input
                     type="text"
                     readOnly
-                    placeholder={user?.email} 
+                    placeholder={user?.email}
                     className="placeholder:text-black p-1 mb-4 text-[1rem] border border-gray-300 rounded-md"
                   />
                 </div>
@@ -216,44 +224,51 @@ export default function () {
         </div>
 
         <div className="w-[30%] h-full  border border-white">
-          <h3 onClick={cart} className="m-2 cursor-pointer text-[1.25rem] font-bold text-center">
+          <h3
+            onClick={cart}
+            className="m-2 cursor-pointer text-[1.25rem] font-bold text-center"
+          >
             <i className="mr-2 fa fa-arrow-left"></i>Review Your Cart
           </h3>
           <div className="flex flex-col justify-between h-[30rem] ">
             <div className="flex flex-col w-full justify-start max-h-[300px] overflow-y-auto border p-1 border-white">
               {CartItems.map((p) => (
-                 <div key={p?._id} className="flex flex-row items-center w-full mb-3 h-[120px] border border-gray-500 rounded-md">
-                 <div className="w-[30%]">
-                 {p?.image?.length > 1 ? (
-                    <img
-                      className="object-contain w-40 h-40"  
-                      src={
-                        p?.image[
-                          Math.floor(Math.random() * p?.image.length)
-                        ]?.url
-                      }
-                      alt="test image"
-                    />
-                  ) : (
-                    <img
-                    className="object-contain w-40 h-40"
-                    src={p?.image[0]?.url || ""}
-                      alt="image"
-                    />
-                  )}
-                 </div>
-                 <div className="w-[70%] flex flex-col justify-between h-full">
-                   <h3 className="text-[1rem]">{p?.product_name}</h3>
-                   <h3 className="text-[1rem]">
-                     x <span className="mr-1">{p?.orderQuantity}</span>
-                   </h3>
-                   <h3 className="text-[1rem]">
-                     Item Subtotal: <span className="mr-1">{p?.orderQuantity * p?.price}</span>
-                   </h3>
-                 </div>
-               </div>
+                <div
+                  key={p?._id}
+                  className="flex flex-row items-center w-full mb-3 h-[120px] border border-gray-500 rounded-md"
+                >
+                  <div className="w-[30%]">
+                    {p?.image?.length > 1 ? (
+                      <img
+                        className="object-contain w-40 h-40"
+                        src={
+                          p?.image[Math.floor(Math.random() * p?.image.length)]
+                            ?.url
+                        }
+                        alt="test image"
+                      />
+                    ) : (
+                      <img
+                        className="object-contain w-40 h-40"
+                        src={p?.image[0]?.url || ""}
+                        alt="image"
+                      />
+                    )}
+                  </div>
+                  <div className="w-[70%] flex flex-col justify-between h-full">
+                    <h3 className="text-[1rem]">{p?.product_name}</h3>
+                    <h3 className="text-[1rem]">
+                      x <span className="mr-1">{p?.orderQuantity}</span>
+                    </h3>
+                    <h3 className="text-[1rem]">
+                      Item Subtotal:{" "}
+                      <span className="mr-1">
+                        {p?.orderQuantity * p?.price}
+                      </span>
+                    </h3>
+                  </div>
+                </div>
               ))}
-             
             </div>
 
             <div className="w-full">
@@ -269,13 +284,17 @@ export default function () {
                 <p className="text-[1rem] text-gray-700 font-semibold">
                   Item Quantity:
                 </p>
-                <p className="text-[1rem] text-gray-700 font-semibold">{totalOrders}</p>
+                <p className="text-[1rem] text-gray-700 font-semibold">
+                  {totalOrders}
+                </p>
               </div>
               <div className="flex items-center justify-between p-2">
                 <p className="text-[1rem] text-gray-700 font-semibold">
                   Shipping:
                 </p>
-                <p className="text-[1rem] text-gray-700 font-semibold">{shipping}</p>
+                <p className="text-[1rem] text-gray-700 font-semibold">
+                  {shipping}
+                </p>
               </div>
               <div className="flex items-center justify-between p-2">
                 <p className="text-[1rem] text-gray-700 font-semibold">
@@ -286,7 +305,10 @@ export default function () {
                 </p>
               </div>
               <div className="flex items-center justify-center p-2">
-                <button className="p-2 w-[12rem] text-center text-white font-semibold bg-red-600 rounded-md">
+                <button
+                  type="submit"
+                  className="p-2 w-[12rem] text-center text-white font-semibold bg-red-600 rounded-md"
+                >
                   Checkout Order
                 </button>
               </div>
