@@ -1,11 +1,15 @@
-import ImageTwo from "../../assets/mobile-3jpeg.jpg";
-import { useAuthenticationStore, useUserStore } from "../../state/store";
+import {
+  useAuthenticationStore,
+  useUserStore,
+  useOrderStore,
+} from "../../state/store";
 import { useQuery } from "@tanstack/react-query";
 import { User } from "../../interface";
 
 export default function () {
   const { user } = useAuthenticationStore();
   const { getUserById } = useUserStore();
+  const { getAllOrders } = useOrderStore();
 
   const { data } = useQuery<User>({
     queryKey: ["user", user?._id],
@@ -13,10 +17,32 @@ export default function () {
     enabled: !!user?._id,
   });
 
+  const { data: orders } = useQuery({
+    queryKey: ["orders"],
+    queryFn: getAllOrders,
+  });
+
+  const userOrders = orders?.filter((o) =>
+    o?.user.includes(user?._id.toString() || "")
+  );
+
   const randomImage =
     Array.isArray(data?.image) && data.image.length > 0
       ? data.image[Math.floor(Math.random() * data.image.length)]
       : null;
+
+  const productDetails = userOrders?.flatMap((o) =>
+    o.products.map((p) => ({
+      id: p?.product?._id,
+      name: p?.product?.product_name,
+      price: p?.product?.price,
+      description: p?.product?.description,
+      image: p?.product?.image,
+      quantity: p?.quantity,
+      date_placed: o.date_placed, 
+      status: o.status, 
+    }))
+  );
 
   return (
     <>
@@ -38,15 +64,16 @@ export default function () {
               <p className="text-[1rem]">{data?.contact_number}</p>
               <div className="flex justify-between w-full p-2">
                 <button className="p-2 w-[6rem] rounded-md border text-center bg-yellow-300 text-white border-white">
-                  Packed
+                <i className="block mr-1 fa-solid fa-box"></i>Packed
                 </button>
                 <button className="p-2 w-[6rem] rounded-md border text-center bg-blue-400 text-white border-white">
-                  Shipped
+                <i className="block mr-1 fa-solid fa-truck"></i>Shipped
                 </button>
                 <button className="p-2 w-[6rem] rounded-md border text-center bg-green-400 text-white border-white">
-                  Delivered
+                <i className="block mr-1 fa-solid fa-truck-fast"></i> Delivered
                 </button>
                 <button className="p-2 w-[6rem] rounded-md border text-center bg-red-500 text-white border-white">
+                <i className="block fa-solid fa-xmark"></i>
                   Cancelled
                 </button>
               </div>
@@ -127,42 +154,45 @@ export default function () {
           <h3 className="font-bold text-[1rem] text-center md:text-[1.5rem] md:font-bold">
             _________________________________________________________
           </h3>
-          <div className="flex flex-col w-full h-full p-2 overflow-y-auto">
-            <div className="flex items-center w-full h-[12rem] border border-gray-800 rounded-md mb-4 shadow-md">
-              <div className="flex items-center justify-center w-1/4 h-full ">
-                <img
-                  src={ImageTwo}
-                  className="object-contain w-[7rem] h-[7rem] rounded-full"
-                />
+          <div className="flex flex-col w-full h-full p-1 overflow-y-auto max-h-[30rem]">
+            {productDetails?.map((p, index) => (
+              <div
+                key={index}
+                className="flex items-center w-full h-[12rem] border border-gray-800 rounded-md m-1 shadow-md"
+              >
+                <div className="flex items-center justify-center w-1/4 h-full ">
+                  {p?.image?.length > 1 ? (
+                    <img
+                      className="object-contain w-[7rem] h-[7rem] rounded-full"
+                      src={
+                        p?.image[Math.floor(Math.random() * p?.image.length)]
+                          ?.url
+                      }
+                      alt="test image"
+                    />
+                  ) : (
+                    <img
+                      className="object-contain w-[7rem] h-[7rem] rounded-full"
+                      src={p?.image[0]?.url || ""}
+                      alt="image"
+                    />
+                  )}
+                </div>
+                <div className="flex flex-col justify-between w-9/12 h-full p-1 cursor-pointer ">
+                  <div className="flex items-center justify-between">
+                    <p className="text-[1rem] font-semibold">{p.name} </p>
+                    <p className="text-[1rem]">x{p.quantity} </p>
+                  </div>
+                  <div className="overflow-hidden text-left">
+                    <p className="text-sm line-clamp-3">{p.description}</p>
+                  </div>
+                  <div className="flex items-center justify-between">
+                  <p className="text-[1rem] font-semibold">Date Placed: {new Date(p.date_placed).toLocaleString()}</p>
+                  <p className="text-[1rem] font-bold">{p.price}</p>
+                  </div>
+                </div>
               </div>
-              <div className="flex flex-col justify-between w-9/12 h-full p-1 cursor-pointer ">
-                <div className="flex items-center justify-between">
-                  <p className="text-[1rem] font-semibold">Samsung A05S </p>
-                  <p className="text-[1rem]">Pending </p>
-                </div>
-                <div className="overflow-hidden text-left">
-                  <p className="text-sm line-clamp-3">
-                    The Samsung Galaxy A05s is a "budget-friendly" smartphone
-                    that features a large 6.7-inch FHD+ display with a 90Hz
-                    screen refresh rate, 50MP + 2MP + 2MP triple rear cameras
-                    with LED flash, and a single 13MP selfie camera. It runs on
-                    a Qualcomm Snapdragon 680 processor with 4GB of RAM, Android
-                    13 OS, and the One UI interface. There's also a side-mounted
-                    fingerprint scanner, 4G LTE connectivity, dual-band Wi-Fi,
-                    Dolby ATMOS audio, and 128GB of expandable storage up to
-                    1TB. A built-in 5,000mAh battery powers the device with
-                    support for 25W fast charging technology. It comes in two
-                    color choices - black and light green.
-                  </p>
-                </div>
-                <div className="flex items-center justify-between">
-                  <p className="text-[1rem] font-semibold">
-                    Date Placed: 12-29-2024
-                  </p>
-                  <p className="text-[1rem] font-bold">6,490.00</p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
