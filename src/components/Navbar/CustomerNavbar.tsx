@@ -29,6 +29,10 @@ export default function () {
     navigate("/user/cart");
   };
 
+  const shop = () => {  
+    navigate("/users/shop");
+  }
+
   return (
     <nav className="w-full h-[3.75rem] border border-gray-300 flex items-center justify-between p-1">
       <div className="flex items-center">
@@ -43,7 +47,7 @@ export default function () {
           >
             Home
           </li>
-          <li className="m-3 text-sm font-semibold">Shop</li>
+          <li onClick={shop} className="m-3 text-sm font-semibold">Shop</li>
           <li className="m-3 text-sm font-semibold">About</li>
           <li className="m-3 text-sm font-semibold">Contact Us</li>
         </ul>
