@@ -32,7 +32,7 @@ export default function () {
 
   const filteredProducts = products?.filter((p) =>
     p?.product_name?.includes(data?.product_name || "")
-  );
+  ); 
 
   const productColors = filteredProducts?.map((p) => p?.color?.toLowerCase());
 
