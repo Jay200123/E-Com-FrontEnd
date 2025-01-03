@@ -3,6 +3,7 @@ import { useProductStore } from "./api/product";
 import { useUserStore } from "./api/user";
 import { useCartStore } from "./cart";
 import { useOrderStore } from "./api/order";
+import { useFilterStore } from "./filter";
 
 export { 
     useAuthenticationStore,
@@ -10,4 +11,5 @@ export {
     useUserStore,
     useCartStore,
     useOrderStore,
+    useFilterStore
 };
