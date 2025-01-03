@@ -29,6 +29,8 @@ export default function () {
     queryFn: getAllProducts,
   });
 
+  const newProducts = data?.filter((p) => p.isNew === true);
+
   return (
     <div className="flex flex-col justify-center w-full h-full p-2">
       <Carousel />
@@ -76,9 +78,12 @@ export default function () {
       </div>
       <div className="flex flex-col items-center w-full p-2">
         <h3 className="text-3xl font-bold text-left">New Arrivals</h3>
+        {newProducts?.length === 0 && (
+          <h3 className="text-3xl font-bold text-left">No New Arrivals Yet</h3>
+        )}
         <div className="flex items-center w-full overflow-x-auto">
           <div className="flex flex-nowrap">
-            {data?.map((p) => (
+            {newProducts?.map((p) => (
               <div
                 key={p._id}
                 onClick={() => navigate(`/product/${p?._id}`)}
