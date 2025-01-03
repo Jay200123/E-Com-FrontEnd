@@ -12,13 +12,18 @@ interface Product {
   quantity: number;
   orderQuantity: number;  
   category: string;
+  isNew: boolean;
   image: Image[];
 }
 
 interface ProductState {
+  products: Product[];	
   loading: boolean;
   message: string;
   getAllProducts: () => Promise<Product[]>;
+  getAllMobiles: () => Promise<Product[]>;  
+  getAllLaptops: () => Promise<Product[]>;
+  getAllComputers: () => Promise<Product[]>;
   getProductById: (id: string) => Promise<Product>;
   addProduct: (data: FormData) => Promise<void>;
   updateProduct: (id: string, data: FormData) => Promise<void>;
