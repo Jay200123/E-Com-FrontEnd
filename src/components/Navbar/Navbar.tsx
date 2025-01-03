@@ -39,13 +39,12 @@ export default function () {
           >
             Home
           </li>
-          <li onClick={shop} className="m-3 text-sm font-semibold">Shop</li>
+          <li onClick={shop} className="m-3 text-sm font-semibold cursor-pointer">Shop</li>
           <li className="m-3 text-sm font-semibold">About</li>
           <li className="m-3 text-sm font-semibold">Contact Us</li>
         </ul>
       </div>
       <div className="flex items-center justify-between p-1">
-        <i className="m-2 text-lg fa-solid fa-magnifying-glass"></i>
         <i
           title="Sign In"
           onClick={signIn}
