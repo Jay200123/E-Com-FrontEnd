@@ -11,16 +11,23 @@ export default function () {
   const navigate = useNavigate();
   const { products, getAllComputers } = useProductStore();
   const { addProduct } = useCartStore();
-  const { price } = useFilterStore();
+  const { price, name } = useFilterStore();
+
 
   useQuery({
     queryKey: ["products"],
     queryFn: getAllComputers,
   });
 
-  const filteredProducts = products?.filter((p) =>
-    p?.price.toString().includes(price.toString())
-  );
+  const filteredProducts = products?.filter((p) => {
+    const priceMatch = price
+      ? p?.price.toString().includes(price.toString())
+      : true;
+    const nameMatch = name
+      ? p?.product_name.toLowerCase().includes(name.toLowerCase())
+      : true;
+    return priceMatch && nameMatch;
+  });
 
   return (
     <>
