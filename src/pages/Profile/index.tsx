@@ -5,11 +5,21 @@ import {
 } from "../../state/store";
 import { useQuery } from "@tanstack/react-query";
 import { User } from "../../interface";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function () {
+  const navigate = useNavigate();
+
   const { user } = useAuthenticationStore();
   const { getUserById } = useUserStore();
   const { getAllOrders } = useOrderStore();
+
+  const [filter, setFilter] = useState("Processing");
+
+  const setFilterValue = (value: string) => {
+    setFilter(value);
+  };
 
   const { data } = useQuery<User>({
     queryKey: ["user", user?._id],
@@ -22,9 +32,14 @@ export default function () {
     queryFn: getAllOrders,
   });
 
-  const userOrders = orders?.filter((o) =>
-    o?.user.includes(user?._id.toString() || "")
+  const userOrders = orders?.filter(
+    (o) =>
+      o?.user.includes(user?._id.toString() || "") && o?.status.includes(filter)
   );
+
+  const editProfile = () => {
+    navigate("/user/edit/profile");
+  };
 
   const randomImage =
     Array.isArray(data?.image) && data.image.length > 0
@@ -39,8 +54,8 @@ export default function () {
       description: p?.product?.description,
       image: p?.product?.image,
       quantity: p?.quantity,
-      date_placed: o.date_placed, 
-      status: o.status, 
+      date_placed: o.date_placed,
+      status: o.status,
     }))
   );
 
@@ -53,7 +68,7 @@ export default function () {
               <img
                 src={randomImage?.url}
                 alt={randomImage?.originalname}
-                className="w-20 h-20 rounded-full md:w-40 md:h-40"
+                className="object-cover w-20 h-20 rounded-full md:w-40 md:h-40"
               />
             </div>
             <div className="w-2/3 h-full p-2 overflow-hidden border border-white">
@@ -62,25 +77,70 @@ export default function () {
               </h3>
               <p className="text-[1rem]">{data?.email}</p>
               <p className="text-[1rem]">{data?.contact_number}</p>
-              <div className="flex justify-between w-full p-2">
-                <button className="p-2 w-[6rem] rounded-md border text-center bg-yellow-300 text-white border-white">
-                <i className="block mr-1 fa-solid fa-box"></i>Packed
+              <div className="flex justify-between w-full">
+                <button
+                  onClick={() => setFilterValue("Processing")}
+                  className={`p-1 text-sm m-1 w-[6rem] rounded-md border text-center flex flex-col items-center ${
+                    filter === "Processing"
+                      ? "bg-white text-orange-400 border-orange-400"
+                      : "bg-orange-400 text-white border-white"
+                  }`}
+                >
+                  <i className="block fa-solid fa-hourglass-half"></i>
+                  Pending
                 </button>
-                <button className="p-2 w-[6rem] rounded-md border text-center bg-blue-400 text-white border-white">
-                <i className="block mr-1 fa-solid fa-truck"></i>Shipped
+                <button
+                  onClick={() => setFilterValue("Packed")}
+                  className={`p-1 text-sm m-1 w-[6rem] border rounded-md text-center flex flex-col items-center ${
+                    filter === "Packed"
+                      ? "bg-white text-yellow-300 border-yellow-300"
+                      : "bg-yellow-300 text-white border-yellow-300"
+                  }`}
+                >
+                  <i className="block fa-solid fa-box"></i>
+                  Packed
                 </button>
-                <button className="p-2 w-[6rem] rounded-md border text-center bg-green-400 text-white border-white">
-                <i className="block mr-1 fa-solid fa-truck-fast"></i> Delivered
+                <button
+                  onClick={() => setFilterValue("Shipped")}
+                  className={`p-1 text-sm m-1 w-[6rem] rounded-md border text-center flex flex-col items-center ${
+                    filter === "Shipped"
+                      ? "bg-white text-blue-400 border-blue-400"
+                      : "bg-blue-400 text-white border-white"
+                  }`}
+                >
+                  <i className="block fa-solid fa-truck"></i>
+                  Shipped
                 </button>
-                <button className="p-2 w-[6rem] rounded-md border text-center bg-red-500 text-white border-white">
-                <i className="block fa-solid fa-xmark"></i>
+                <button
+                  onClick={() => setFilterValue("Delivered")}
+                  className={`p-1 text-sm m-1 w-[6rem] rounded-md border text-center flex flex-col items-center ${
+                    filter === "Delivered"
+                      ? "bg-white text-green-400 border-green-400"
+                      : "bg-green-400 text-white border-white"
+                  }`}
+                >
+                  <i className="block fa-solid fa-truck-fast"></i>
+                  Delivered
+                </button>
+                <button
+                  onClick={() => setFilterValue("Cancelled")}
+                  className={`p-1 text-sm m-1 w-[6rem] rounded-md border text-center flex flex-col items-center ${
+                    filter === "Cancelled"
+                      ? "bg-white text-red-500 border-red-500"
+                      : "bg-red-500 text-white border-white"
+                  }`}
+                >
+                  <i className="block fa-solid fa-xmark"></i>
                   Cancelled
                 </button>
               </div>
             </div>
           </div>
           <div className="relative flex flex-col w-full p-2 h-2/3">
-            <button className="absolute p-2 text-white bg-blue-700 rounded-sm bottom-3 right-3 md:text-lg w-[6.25rem]">
+            <button
+              onClick={editProfile}
+              className="absolute p-2 text-white bg-blue-700 rounded-sm bottom-3 right-3 md:text-lg w-[6.25rem]"
+            >
               Edit
             </button>
             <div className="flex flex-row w-full">
@@ -149,7 +209,9 @@ export default function () {
         <div className="w-full h-full border md:w-1/2 ">
           <h3 className="text-[1rem] m-1 font-medium md:text-2xl p-2 md:font-bold">
             {" "}
-            Pending Orders (1)
+            <i className="fa-solid fa-spinner"></i>{" "}
+            {filter == "Processing" ? "Pending" : filter} Orders (
+            {productDetails?.length})
           </h3>
           <h3 className="font-bold text-[1rem] text-center md:text-[1.5rem] md:font-bold">
             _________________________________________________________
@@ -187,8 +249,15 @@ export default function () {
                     <p className="text-sm line-clamp-3">{p.description}</p>
                   </div>
                   <div className="flex items-center justify-between">
-                  <p className="text-[1rem] font-semibold">Date Placed: {new Date(p.date_placed).toLocaleString()}</p>
-                  <p className="text-[1rem] font-bold">{p.price}</p>
+                    <p className="text-[1rem] font-semibold">
+                      Date Placed:{" "}
+                      {
+                        new Date(p.date_placed.toLocaleString())
+                          .toISOString()
+                          .split("T")[0]
+                      }
+                    </p>
+                    <p className="text-[1rem] font-bold">{p.price}</p>
                   </div>
                 </div>
               </div>
