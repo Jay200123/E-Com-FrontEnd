@@ -26,12 +26,12 @@ export default function () {
   }
 
   return (
-    <nav className="w-full overflow-hidden h-[3.75rem] border border-gray-300 flex items-center justify-start md:justify-between p-1">
+    <nav className="w-full overflow-hidden h-[3.75rem] border border-gray-300 flex items-center justify-between">
       <div className="items-center hidden md:block">
         <i className="m-2 text-lg fa-solid fa-bag-shopping"></i>
         <h3 className="text-lg font-bold"> IT Shop</h3>
       </div>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center overflow-hidden">
         <ul className="flex flex-row items-start justify-start">
           <li
             onClick={home}
@@ -40,8 +40,8 @@ export default function () {
             Home
           </li>
           <li onClick={shop} className="m-3 text-xs font-semibold cursor-pointer md:text-sm">Shop</li>
-          <li className="m-3 text-xs font-semibold md:text-sm">About</li>
-          <li className="m-3 text-xs font-semibold md:text-sm">Contact Us</li>
+          <li onClick={shop} className="m-3 text-xs font-semibold cursor-pointer md:text-sm">About</li>
+          <li onClick={shop} className="hidden m-3 text-xs font-semibold cursor-pointer md:block md:text-sm">Contact</li>
         </ul>
       </div>
       <div className="flex items-center justify-between p-1">
