@@ -18,7 +18,8 @@ import {
   Checkout,
   Cart,
   Shop,
-  EditProfile
+  EditProfile,
+  OrderDetails,
 } from "./pages";
 
 import { ProtectedRoute } from "./components";
@@ -131,6 +132,14 @@ export default function App() {
             element={
               <ProtectedRoute userRole={["User"]}>
                 <EditProfile />
+              </ProtectedRoute>
+            }
+          />
+            <Route
+            path="/user/order/detail/:id"
+            element={
+              <ProtectedRoute userRole={["User"]}>
+                <OrderDetails />
               </ProtectedRoute>
             }
           />
