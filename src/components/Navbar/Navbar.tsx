@@ -35,11 +35,11 @@ export default function () {
         <ul className="flex flex-row items-start justify-start">
           <li
             onClick={home}
-            className="m-3 text-sm font-semibold cursor-pointer"
+             className="m-3 text-xs font-semibold cursor-pointer md:text-sm"
           >
             Home
           </li>
-          <li onClick={shop} className="m-3 font-semibold cursor-pointer md:text-sm">Shop</li>
+          <li onClick={shop} className="m-3 text-xs font-semibold cursor-pointer md:text-sm">Shop</li>
           <li className="m-3 text-xs font-semibold md:text-sm">About</li>
           <li className="m-3 text-xs font-semibold md:text-sm">Contact Us</li>
         </ul>
