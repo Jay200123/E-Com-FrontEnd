@@ -3,14 +3,17 @@ import { useFilterStore } from "../../state/filter";
 
 export default function () {
   const { setFilter } = useFilterStore();
+  const [name, setName] = useState<string>("");
   const [price, setPrice] = useState<string>("");
   const [selectedBrand, setSelectedBrand] = useState<string>("");
 
   const brands = ["Samsung", "Apple", "Nokia", "Sony", "LG", "Motorola"];
 
   useEffect(() => {
-    setFilter(Number(price), selectedBrand);
+    setFilter(name, Number(price), selectedBrand);
   }, [price, selectedBrand, setFilter]);
+
+  console.log(name, price, selectedBrand);
 
   const back = () => {
     window.history.back();
@@ -20,10 +23,12 @@ export default function () {
       <div className="flex flex-col justify-center p-1">
         <h3 className="text-3xl font-bold text-center">IT Shop</h3>
         <div className="flex items-center justify-center">
-          <i className="-mr-5 fa fa-search z-[1]"></i>
+          <i className="fa fa-search"></i>
           <input
             type="text"
-            className="w-full border border-gray-500 rounded-md"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full p-1 border border-gray-500 rounded-md"
           />
         </div>
       </div>
