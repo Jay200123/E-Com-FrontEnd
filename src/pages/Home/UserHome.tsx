@@ -23,11 +23,14 @@ export default function () {
   const computers = () => {
     navigate("/user/products/computers");
   };
-  
+
   const { data } = useQuery({
     queryKey: ["products"],
     queryFn: getAllProducts,
   });
+
+  const newProducts = data?.filter((p) => p.isNew === true);
+
 
   return (
     <div className="flex flex-col justify-center w-full h-full p-2">
@@ -76,12 +79,15 @@ export default function () {
       </div>
       <div className="flex flex-col items-center w-full p-2">
         <h3 className="text-3xl font-bold text-left">New Arrivals</h3>
+        {newProducts?.length === 0 && (
+          <h3 className="text-3xl font-bold text-left">No New Arrivals Yet</h3>
+        )}
         <div className="flex items-center w-full overflow-x-auto">
           <div className="flex flex-nowrap">
-            {data?.map((p) => (
+            {newProducts?.map((p) => (
               <div
                 key={p._id}
-                onClick={() => navigate(`/user/product/${p?._id}`)}
+                onClick={() => navigate(`/product/${p?._id}`)}
                 className="min-w-[18.75rem] max-w-[25rem] cursor-pointer transition-all duration-500 h-auto p-2 flex-shrink-0 border border-gray-300 rounded-md m-4"
               >
                 {p?.image?.length > 1 ? (
@@ -103,11 +109,11 @@ export default function () {
                 <div className="flex items-center justify-between">
                   <p className="font-semibold">₱{p.price}</p>
                   <div className="flex items-center flex-start">
-                    <FaStar className="text-yellow-500 "/>
-                    <FaStar className="text-yellow-500"/>
-                    <FaStar className="text-yellow-500"/>
-                    <FaStar className="text-yellow-500"/>
-                    <FaStar className="text-yellow-500"/>
+                    <FaStar className="text-yellow-500 " />
+                    <FaStar className="text-yellow-500" />
+                    <FaStar className="text-yellow-500" />
+                    <FaStar className="text-yellow-500" />
+                    <FaStar className="text-yellow-500" />
                   </div>
                 </div>
               </div>
