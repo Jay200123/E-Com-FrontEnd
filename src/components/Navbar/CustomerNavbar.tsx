@@ -4,7 +4,7 @@ import { useAuthenticationStore, useCartStore } from "../../state/store";
 
 export default function () {
   const navigate = useNavigate();
-  const { cart: CartItems } = useCartStore(); 
+  const { cart: CartItems } = useCartStore();
   const { logout } = useAuthenticationStore();
 
   const home = () => {
@@ -29,15 +29,15 @@ export default function () {
     navigate("/user/cart");
   };
 
-  const shop = () => {  
+  const shop = () => {
     navigate("/users/shop");
-  }
+  };
 
   return (
     <nav className="w-full overflow-hidden h-[3.75rem] border border-gray-300 flex items-center justify-start md:justify-between p-1">
       <div className="items-center hidden md:block">
-        <i className="m-2 text-xs md:text-sm fa-solid fa-bag-shopping"></i>
-        <h3 className="text-xs font-bold md:text-sm"> IT Shop</h3>
+        <i className="m-2 text-lg fa-solid fa-bag-shopping"></i>
+        <span className="text-lg font-bold">IT Shop</span>
       </div>
       <div className="flex items-center justify-center">
         <ul className="flex flex-row items-start justify-start">
@@ -47,11 +47,18 @@ export default function () {
           >
             Home
           </li>
-          <li onClick={shop}
-           className="m-3 text-xs font-semibold cursor-pointer md:text-sm"
-           >Shop</li>
-          <li className="m-3 text-xs font-semibold cursor-pointer md:text-sm">About</li>
-          <li className="m-3 text-xs font-semibold cursor-pointer md:text-sm">Contact Us</li>
+          <li
+            onClick={shop}
+            className="m-3 text-xs font-semibold cursor-pointer md:text-sm"
+          >
+            Shop
+          </li>
+          <li className="m-3 text-xs font-semibold cursor-pointer md:text-sm">
+            About
+          </li>
+          <li className="m-3 text-xs font-semibold cursor-pointer md:text-sm">
+            Contact Us
+          </li>
         </ul>
       </div>
       <div className="flex items-center justify-between p-1">
