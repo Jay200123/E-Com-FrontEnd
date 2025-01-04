@@ -20,6 +20,7 @@ import {
   Shop,
   EditProfile,
   OrderDetails,
+  Dashboard,
 } from "./pages";
 
 import { ProtectedRoute } from "./components";
@@ -143,6 +144,11 @@ export default function App() {
               </ProtectedRoute>
             }
           />
+        </Route>
+
+        {/* Admin Layout */}
+        <Route element={<Dashboard />}>
+
         </Route>
       </Route>
     )
