@@ -41,6 +41,7 @@ export default function () {
     navigate("/user/edit/profile");
   };
 
+
   const randomImage =
     Array.isArray(data?.image) && data.image.length > 0
       ? data.image[Math.floor(Math.random() * data.image.length)]
@@ -56,6 +57,7 @@ export default function () {
       quantity: p?.quantity,
       date_placed: o.date_placed,
       status: o.status,
+      order_id: o._id,  
     }))
   );
 
@@ -208,8 +210,7 @@ export default function () {
         </div>
         <div className="w-full h-full border md:w-1/2 ">
           <h3 className="text-[1rem] m-1 font-medium md:text-2xl p-2 md:font-bold">
-            {" "}
-            <i className="fa-solid fa-spinner"></i>{" "}
+           {" "}
             {filter == "Processing" ? "Pending" : filter} Orders (
             {productDetails?.length})
           </h3>
@@ -219,6 +220,7 @@ export default function () {
           <div className="flex flex-col w-full h-full p-1 overflow-y-auto max-h-[30rem]">
             {productDetails?.map((p, index) => (
               <div
+              onClick={() => navigate(`/user/order/detail/${p.order_id}`)}  
                 key={index}
                 className="flex items-center w-full h-[12rem] border border-gray-800 rounded-md m-1 shadow-md"
               >
@@ -257,7 +259,7 @@ export default function () {
                           .split("T")[0]
                       }
                     </p>
-                    <p className="text-[1rem] font-bold">{p.price}</p>
+                    <p className="text-[1rem] font-bold">₱{p.price}</p>
                   </div>
                 </div>
               </div>
