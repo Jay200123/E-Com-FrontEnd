@@ -33,152 +33,136 @@ export default function () {
 
   return (
     <>
-      <div className="flex flex-col items-center w-full h-screen p-2 md:flex-row">
-        <div className="w-9/12 h-full p-2 rounded-md">
-          <h3 className="w-4/5 p-2 m-1 text-3xl text-left border-b-4 border-black">
+      <div className="flex flex-col items-center w-full min-h-screen p-2 space-y-4 md:flex-row md:space-y-0 md:space-x-4">
+        {/* Cart Section */}
+        <div className="w-full h-full p-2 bg-white rounded-md shadow-lg md:w-2/3">
+          <h3 className="p-2 text-lg font-bold text-left border-b-2 border-black md:text-2xl">
             My Cart
           </h3>
-          <div className="relative w-full h-full overflow-y-auto flex flex-col justify-start mt-2.5">
-            <h3 className="absolute text-sm font-medium md:font-bold md:text-lg">
-              {cart && cart.length > 0 ? "" : "No items in the cart"}
-            </h3>
-            {cart?.map((product, index) => (
-              <div
-                key={index}
-                className="flex items-center w-full h-[15rem] border border-gray-800 rounded-md mb-4 shadow-md"
-              >
-                <div className="flex items-center justify-center w-1/4 h-full">
-                  {product?.image?.length > 1 ? (
+          <div className="relative w-full h-full mt-4 overflow-y-auto">
+            {cart?.length > 0 ? (
+              cart.map((product, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col items-center w-full p-4 mb-4 border border-gray-300 rounded-lg shadow-sm md:flex-row"
+                >
+                  {/* Product Image */}
+                  <div className="flex items-center justify-center w-full mb-4 md:w-1/4 md:mb-0">
                     <img
-                      className="object-contain w-[8rem] h-[8rem] rounded-full"
+                      className="object-cover w-24 h-24 rounded-md"
                       src={
-                        product?.image[
-                          Math.floor(Math.random() * product?.image.length)
-                        ]?.url
+                        product?.image?.length > 1
+                          ? product?.image[
+                              Math.floor(Math.random() * product?.image.length)
+                            ]?.url
+                          : product?.image[0]?.url || ""
                       }
-                      alt="test image"
-                    />
-                  ) : (
-                    <img
-                      className="object-contain w-[8rem] h-[8rem] rounded-full"
-                      src={product?.image[0]?.url || ""}
-                      alt="image"
-                    />
-                  )}
-                </div>
-                <div className="flex flex-col justify-between w-9/12 h-full p-1 cursor-pointer">
-                  <div className="flex items-center justify-between">
-                    <p className="text-[1rem] font-semibold">
-                      {product?.product_name}
-                    </p>
-                    <FaTrash
-                      className="text-lg text-red-500"
-                      title="Remove Product"
-                      onClick={() => handleRemove(product?._id)}
+                      alt={product?.product_name || "Product Image"}
                     />
                   </div>
-                  <div className="mb-1 overflow-hidden text-left">
-                    <p className="text-sm line-clamp-3">
+
+                  {/* Product Details */}
+                  <div className="flex flex-col justify-between w-full space-y-2 md:w-3/4">
+                    <div className="flex items-center justify-between">
+                      <p className="text-lg font-semibold">
+                        {product?.product_name}
+                      </p>
+                      <FaTrash
+                        className="text-xl text-red-500 cursor-pointer"
+                        title="Remove Product"
+                        onClick={() => handleRemove(product?._id)}
+                      />
+                    </div>
+                    <p className="text-sm text-gray-600 line-clamp-3">
                       {product?.description}
                     </p>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <p className="text-[1rem] font-medium">
-                      Unit Price:<span className="ml-1">{product?.price}</span>
-                    </p>
-
-                    <div className="flex flex-col items-center md:flex-row">
-                      <p className="mr-2 text-lg font-semibold">Qty:</p>
-                      <button
-                        onClick={() => incrementQuantity(product?._id)}
-                        className="p-1 text-xs md:text-sm  w-[4rem]  text-center font-bold text-white bg-red-600 rounded-md"
-                      >
-                        <i className="fa-solid text-[1rem] text-white fa-plus"></i>
-                      </button>
-                      <p className="mx-4 mt-2 text-xs text-[1rem] font-semibold">
-                        {product?.orderQuantity}
+                    <div className="flex items-center justify-between">
+                      <p className="text-lg font-medium">
+                        Unit Price:{" "}
+                        <span className="font-bold">{product?.price}</span>
                       </p>
-                      {product.orderQuantity > 1 ? (
+                      {/* Quantity Controls */}
+                      <div className="flex items-center space-x-2">
                         <button
-                          onClick={() => decrementQuantity(product?._id)}
-                          className="p-1 md:text-sm w-[4rem]  text-center font-bold text-white bg-green-600 rounded-md"
+                          onClick={() => incrementQuantity(product?._id)}
+                          className="px-3 py-1 text-sm text-white bg-red-600 rounded-md"
                         >
-                          <i className="fa-solid text-[1rem] text-white fa-minus"></i>
+                          <i className="fa-solid fa-plus"></i>
                         </button>
-                      ) : (
+                        <p className="font-semibold">
+                          {product?.orderQuantity}
+                        </p>
                         <button
                           onClick={() =>
-                            toast.error("Minimum quantity reached")
+                            product.orderQuantity > 1
+                              ? decrementQuantity(product?._id)
+                              : toast.error("Minimum quantity reached")
                           }
-                          className="p-1 md:text-sm w-[4rem]  text-center font-bold text-white bg-gray-600 opacity-70 rounded-md"
+                          className={`px-3 py-1 text-white rounded-md text-sm ${
+                            product.orderQuantity > 1
+                              ? "bg-green-600"
+                              : "bg-gray-400 opacity-70"
+                          }`}
                         >
-                          <i className="fa-solid text-[1rem] text-white fa-minus"></i>
+                          <i className="fa-solid fa-minus"></i>
                         </button>
-                      )}
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-center justify-end m-2">
-                    <p className="text-[1rem] font-medium">
-                      Item Subtotal:
-                      <span className="ml-1 underline">
+                    <p className="font-medium text-right">
+                      Subtotal:{" "}
+                      <span className="font-bold underline">
                         {product.orderQuantity * product.price}
                       </span>
                     </p>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <p className="text-lg font-medium text-center text-gray-600">
+                No items in the cart
+              </p>
+            )}
           </div>
         </div>
-        <div className="w-full p-3 border border-gray-400 rounded-md shadow-sm md:w-1/4 h-3/4">
-          <h3 className="text-[1.5rem] w-11/12 p-2 border-b-4 border-black text-center m-2 text-black font-semibold">
+
+        {/* Order Summary */}
+        <div className="w-full p-4 bg-white border border-gray-200 rounded-md shadow-lg md:w-1/3">
+          <h3 className="pb-2 text-xl font-semibold text-center border-b-2 border-black">
             Order Details
           </h3>
-          <div className="w-full">
-            <div className="flex items-center justify-between p-2">
-              <p className="text-[1rem] text-gray-700 font-semibold">
-                Order Subtotal:
-              </p>
-              <p className="text-[1rem] text-gray-700 font-semibold">
-                {totalAmount}
-              </p>
+          <div className="mt-4 space-y-4">
+            <div className="flex justify-between">
+              <p className="text-gray-700">Order Subtotal:</p>
+              <p className="font-medium">{totalAmount}</p>
             </div>
-            <div className="flex items-center justify-between p-2">
-              <p className="text-[1rem] text-gray-700 font-semibold">
-                Unit Quantity:
-              </p>
-              <p className="text-[1rem] text-gray-700 font-semibold">
-                {totalOrders}
-              </p>
+            <div className="flex justify-between">
+              <p className="text-gray-700">Unit Quantity:</p>
+              <p className="font-medium">{totalOrders}</p>
             </div>
-            <div className="flex items-center justify-between p-2">
-              <p className="text-[1rem] text-gray-700 font-semibold">
+            <div className="flex justify-between">
+              <p className="text-gray-700">
                 {shipping > 0 ? "Shipping:" : "Free Shipping:"}
               </p>
-              <p className="text-[1rem] text-gray-700 font-semibold">
-                {shipping}
-              </p>
+              <p className="font-medium">{shipping}</p>
             </div>
-            <div className="flex items-center justify-between p-2">
-              <p className="text-[1rem] text-gray-700 font-semibold">Total:</p>
-              <p className="text-[1rem] text-gray-700 font-semibold">
-                {totalAmount + shipping}
-              </p>
+            <div className="flex justify-between">
+              <p className="text-gray-700">Total:</p>
+              <p className="font-medium">{totalAmount + shipping}</p>
             </div>
-            <div className="flex items-center justify-center p-2">
-              {cart && cart.length > 0 ? (
+            <div className="text-center">
+              {cart?.length > 0 ? (
                 <button
                   onClick={checkout}
-                  className="p-2 w-[12rem] text-center text-white font-semibold bg-red-600 rounded-md"
+                  className="w-full px-4 py-2 text-white bg-red-600 rounded-md"
                 >
                   Proceed to Checkout
                 </button>
               ) : (
                 <button
                   onClick={() => toast.error("No items in the cart")}
-                  className="p-2 w-[12rem] text-center text-white font-semibold bg-gray-500 rounded-md"
+                  className="w-full px-4 py-2 text-white bg-gray-400 rounded-md"
                 >
-                  Proceed to checkout
+                  Proceed to Checkout
                 </button>
               )}
             </div>
