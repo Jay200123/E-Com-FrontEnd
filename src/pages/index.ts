@@ -11,6 +11,7 @@ import Checkout from "./Cart/checkout";
 import Cart from "./Cart";
 import Shop from "./Shop";
 import EditProfile from "./EditProfile";
+import OrderDetails from "./OrderDetails";
 
 export {
   Home,
@@ -26,4 +27,5 @@ export {
   Cart,
   Shop,
   EditProfile,
+  OrderDetails,
 };
