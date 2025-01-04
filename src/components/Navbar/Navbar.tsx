@@ -26,8 +26,8 @@ export default function () {
   }
 
   return (
-    <nav className="w-full h-[3.75rem] border border-gray-300 flex items-center justify-between p-1">
-      <div className="flex items-center">
+    <nav className="w-full h-[3.75rem] border border-gray-300 flex items-center justify-start md:justify-between p-1">
+      <div className="items-center hidden md:block">
         <i className="m-2 text-lg fa-solid fa-bag-shopping"></i>
         <h3 className="text-lg font-bold"> IT Shop</h3>
       </div>
