@@ -47,7 +47,7 @@ export default function () {
     },
   });
 
-  console.log(formik?.values);
+
   return (
     <form
       onSubmit={formik.handleSubmit}
