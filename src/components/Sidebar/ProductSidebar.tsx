@@ -13,7 +13,6 @@ export default function () {
     setFilter(name, Number(price), selectedBrand);
   }, [price, selectedBrand, setFilter]);
 
-  console.log(name, price, selectedBrand);
 
   const back = () => {
     window.history.back();
