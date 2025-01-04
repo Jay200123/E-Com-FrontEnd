@@ -120,7 +120,7 @@ export default function () {
           </div>
         </div>
       </div>
-      <div className="w-full flex justify-between items-center h-[18.75rem]">
+      <div className="w-full flex flex-col overflow-hidden md:flex-row justify-between items-center h-[21rem] md:h-[18.75rem]">
         <div className="hidden w-1/2 h-full md:block">
           <img
             src={ImageFive}
