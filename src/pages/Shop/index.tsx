@@ -1,12 +1,16 @@
-import { useProductStore, useCartStore, useFilterStore } from "../../state/store";
+import {
+  useProductStore,
+  useCartStore,
+  useFilterStore,
+} from "../../state/store";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 
 export default function () {
   const navigate = useNavigate();
-  const { price } = useFilterStore();
   const { getAllProducts } = useProductStore();
+  const { name, price } = useFilterStore();
   const { addProduct } = useCartStore();
 
   const { data } = useQuery({
@@ -14,12 +18,21 @@ export default function () {
     queryFn: getAllProducts,
   });
 
-  const filteredProducts = data?.filter((p) => p?.price.toString().includes(price.toString()));  
 
+  const filteredProducts = data?.filter((p) => {
+    const priceMatch = price
+      ? p?.price.toString().includes(price.toString())
+      : true;
+    const nameMatch = name
+      ? p?.product_name.toLowerCase().includes(name.toLowerCase())
+      : true;
+    return priceMatch && nameMatch;
+  });
+  
   return (
     <>
       <div className="flex flex-col flex-wrap items-center justify-between w-full h-screen overflow-x-auto md:grid md:grid-cols-4">
-      {filteredProducts?.map((p) => (
+        {filteredProducts?.map((p) => (
           <div
             key={p?._id}
             className="max-w-[15rem] md:w-[16rem] m-3 h-auto cursor-pointer transition-all duration-500 p-2 border border-gray-300 rounded-md"
