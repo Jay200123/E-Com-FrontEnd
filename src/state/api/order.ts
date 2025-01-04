@@ -18,7 +18,6 @@ export const useOrderStore = create<OrderState>((set) => ({
   },
   addOrder: async (values) => {
     const res = await api.post("/orders", values);
-    console.log(res);
     set({ message: res.data.message });
   },
   updateOrderById: async (id, formData) => {
