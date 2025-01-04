@@ -40,14 +40,14 @@ export default function () {
       onSubmit={formik?.handleSubmit}
       className="flex items-center w-full h-[32rem] rounded-md shadow-md"
     >
-      <div className="w-1/2 h-full">
+      <div className="hidden h-full max-w-none md:block md:w-1/2">
         <img
           src={ImageOne}
           alt="Image"
           className="object-cover w-full h-full rounded-l-md"
         />
       </div>
-      <div className="flex flex-col justify-center w-1/2 h-full p-4">
+      <div className="flex flex-col justify-center w-full h-full p-4 md:w-1/2">
         <h3 className="mb-2 text-3xl font-semibold">Sign In</h3>
         <p className="mb-4 text-[1rem] text-gray-600">
           Don't have an account yet?
