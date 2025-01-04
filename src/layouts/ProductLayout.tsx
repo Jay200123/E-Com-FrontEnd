@@ -5,7 +5,7 @@ export default function () {
   return (
     <>
       <main className="flex items-center w-full">
-        <div className="w-[12.5%]">
+        <div className="hidden md:block w-[12.5%]">
           <ProductSidebar />
         </div>
         <div className="w-[87.5%]">
