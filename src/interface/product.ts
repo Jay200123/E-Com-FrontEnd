@@ -12,7 +12,7 @@ interface Product {
   quantity: number;
   orderQuantity: number;  
   category: string;
-  isNew: boolean;
+  isNewlyCreated: boolean;
   image: Image[];
 }
 
