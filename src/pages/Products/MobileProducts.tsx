@@ -30,42 +30,45 @@ export default function () {
 
   return (
     <>
-      <div className="flex flex-col flex-wrap items-center justify-between w-full h-screen overflow-x-auto md:grid md:grid-cols-4">
+      <div className="flex flex-wrap items-center justify-center w-full h-auto gap-4 overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {filteredProducts?.map((p) => (
           <div
             key={p?._id}
-            className="max-w-[15rem] md:w-[16rem] m-3 h-auto cursor-pointer transition-all duration-500 p-2 border border-gray-300 rounded-md"
+            className="w-full max-w-[18rem] m-3 cursor-pointer transition-all duration-500 p-4 border border-gray-300 rounded-md hover:shadow-lg"
           >
             {p?.image?.length > 1 ? (
               <img
-                className="object-cover w-full h-32 md:h-64"
+                className="object-cover w-full h-40 rounded-md md:h-56 lg:h-64"
                 onClick={() => navigate(`/product/${p?._id}`)}
                 src={p?.image[Math.floor(Math.random() * p?.image.length)]?.url}
-                alt="test image"
+                alt="Product Image"
               />
             ) : (
               <img
-                className="object-cover w-full h-32 md:h-64"
+                className="object-cover w-full h-40 rounded-md md:h-56 lg:h-64"
                 onClick={() => navigate(`/product/${p?._id}`)}
                 src={p?.image[0]?.url || ""}
-                alt="image"
+                alt="Product Image"
               />
             )}
-            <p className="font-semibold">
-              {p.product_name}({p?.color})
+
+            <p className="mt-2 text-sm font-semibold text-gray-700 truncate">
+              {p.product_name} ({p?.color})
             </p>
-            <div className="flex items-center flex-start">
-              <FaStar className="text-yellow-500 " />
+
+            <div className="flex items-center mt-1 space-x-1">
+              <FaStar className="text-yellow-500" />
               <FaStar className="text-yellow-500" />
               <FaStar className="text-yellow-500" />
               <FaStar className="text-yellow-500" />
               <FaStar className="text-yellow-500" />
             </div>
-            <div className="flex items-center justify-between">
-              <p className="font-semibold">₱{p?.price}</p>
+
+            <div className="flex items-center justify-between mt-3">
+              <p className="text-sm font-semibold text-gray-800">₱{p?.price}</p>
               <i
                 onClick={() => addProduct(p, 1)}
-                className="text-2xl transition-all duration-500 cursor-pointer fa-solid hover:text-red-500 fa-cart-shopping"
+                className="text-lg transition-colors duration-300 cursor-pointer fa-solid fa-cart-shopping hover:text-red-500"
               ></i>
             </div>
           </div>
