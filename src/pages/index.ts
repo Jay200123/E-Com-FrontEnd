@@ -12,6 +12,7 @@ import Cart from "./Cart";
 import Shop from "./Shop";
 import EditProfile from "./EditProfile";
 import OrderDetails from "./OrderDetails";
+import Dashboard from "./Dasboard";  
 
 export {
   Home,
@@ -28,4 +29,5 @@ export {
   Shop,
   EditProfile,
   OrderDetails,
+  Dashboard,
 };
