@@ -29,7 +29,7 @@ export default function () {
     queryFn: getAllProducts,
   });
 
-  const newProducts = data?.filter((p) => p.isNew === true);
+  const newProducts = data?.filter((p) => p.isNewlyCreated === true);
 
   return (
     <div className="flex flex-col justify-center w-full h-full p-2">
