@@ -18,7 +18,7 @@ export default function () {
     window.history.back();
   };
   return (
-    <div className="flex-col items-center justify-between hidden text-black border w-fullh-screen bg-slate-50 border-l-gray-500 md:flex">
+    <div className="flex-col items-center justify-between hidden w-full h-screen text-black border bg-slate-50 border-l-gray-500 md:flex">
       <div className="flex flex-col justify-center p-1">
         <h3 className="text-3xl font-bold text-center">IT Shop</h3>
         <div className="flex items-center justify-center">
