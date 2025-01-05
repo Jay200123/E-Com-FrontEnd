@@ -21,11 +21,19 @@ import {
   EditProfile,
   OrderDetails,
   Dashboard,
+  UserTable,
+  GetUserById,
+  ProductTable,
 } from "./pages";
 
 import { ProtectedRoute } from "./components";
 
-import { MainLayout, ProductLayout, CustomerLayout } from "./layouts";
+import {
+  MainLayout,
+  ProductLayout,
+  CustomerLayout,
+  AdminLayout,
+} from "./layouts";
 
 export default function App() {
   const Router = createBrowserRouter(
@@ -49,8 +57,22 @@ export default function App() {
 
         {/* Customer Layout */}
         <Route element={<CustomerLayout />}>
-          <Route path="/users" element={<UserHome />} />
-          <Route path="/user/profile" element={<Profile />} />
+          <Route
+            path="/users"
+            element={
+              <ProtectedRoute userRole={["User"]}>
+                <UserHome />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/user/profile"
+            element={
+              <ProtectedRoute userRole={["User"]}>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
 
           <Route element={<ProductLayout />}>
             <Route
@@ -128,7 +150,7 @@ export default function App() {
               </ProtectedRoute>
             }
           />
-           <Route
+          <Route
             path="/user/edit/profile"
             element={
               <ProtectedRoute userRole={["User"]}>
@@ -136,7 +158,7 @@ export default function App() {
               </ProtectedRoute>
             }
           />
-            <Route
+          <Route
             path="/user/order/detail/:id"
             element={
               <ProtectedRoute userRole={["User"]}>
@@ -147,8 +169,39 @@ export default function App() {
         </Route>
 
         {/* Admin Layout */}
-        <Route element={<Dashboard />}>
-
+        <Route element={<AdminLayout />}>
+          <Route
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute userRole={["Admin"]}>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+            <Route
+            path="/users/table"
+            element={
+              <ProtectedRoute userRole={["Admin"]}>
+                <UserTable />
+              </ProtectedRoute>
+            }
+          />
+           <Route
+            path="/user/:id"
+            element={
+              <ProtectedRoute userRole={["Admin"]}>
+                <GetUserById />
+              </ProtectedRoute>
+            }
+          />
+           <Route
+            path="/products/table"  
+            element={
+              <ProtectedRoute userRole={["Admin"]}>
+                <ProductTable />
+              </ProtectedRoute>
+            }
+          />
         </Route>
       </Route>
     )
