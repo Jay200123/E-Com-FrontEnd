@@ -12,7 +12,10 @@ import Cart from "./Cart";
 import Shop from "./Shop";
 import EditProfile from "./EditProfile";
 import OrderDetails from "./OrderDetails";
-import Dashboard from "./Dasboard";  
+import Dashboard from "./Dasboard"; 
+import UserTable from "./UserTable";
+import GetUserById from "./UserTable/getUserById"; 
+import ProductTable from "./ProductTable";
 
 export {
   Home,
@@ -30,4 +33,7 @@ export {
   EditProfile,
   OrderDetails,
   Dashboard,
+  UserTable,
+  GetUserById,
+  ProductTable,
 };
