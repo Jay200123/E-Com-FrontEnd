@@ -16,6 +16,7 @@ import Dashboard from "./Dasboard";
 import UserTable from "./UserTable";
 import GetUserById from "./UserTable/getUserById"; 
 import ProductTable from "./ProductTable";
+import CreateProduct from "./ProductTable/createProduct";
 
 export {
   Home,
@@ -36,4 +37,5 @@ export {
   UserTable,
   GetUserById,
   ProductTable,
+  CreateProduct,
 };
