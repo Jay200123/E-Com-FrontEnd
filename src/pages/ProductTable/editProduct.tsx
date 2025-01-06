@@ -30,25 +30,27 @@ export default function () {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      brand: product?.brand?._id.toString() || "",
+      brand: product?.brand || "",
       product_name: product?.product_name || "",
       description: product?.description || "",
       price: product?.price || "",
       color: product?.color || "",
       category: product?.category || "",
       quantity: product?.quantity || "",
+      isNewlyCreated: product?.isNewlyCreated || true,
       image: [],
     },
     validationSchema: createProductValidationSchema,
     onSubmit: async (values) => {
       const formData = new FormData();
-      formData.append("brand", values.brand);
+      formData.append("brand", values.brand.toString());
       formData.append("product_name", values.product_name);
       formData.append("description", values.description);
       formData.append("color", values.color);
       formData.append("price", values.price.toString());
       formData.append("category", values.category);
       formData.append("quantity", values.quantity.toString());
+      formData.append("isNewlyCreated", values.isNewlyCreated.toString());
       values.image.forEach((file) => {
         formData.append("image", file);
       });
@@ -57,6 +59,8 @@ export default function () {
       navigate("/products/table");
     },
   });
+
+  console.log(formik.values)
 
   const back = () => {
     window.history.back();
@@ -97,7 +101,7 @@ export default function () {
             id="brand"
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
-            value={formik.values.brand}
+            value={formik.values.brand.toString()}
             className="p-2 text-sm border-b border-gray-700 rounded-sm md:text-base placeholder:text-gray-700"
           >
             <option value="" disabled>
@@ -273,6 +277,34 @@ export default function () {
             }}
             className="text-sm md:text-base"
           />
+        </div>
+
+        <div className="flex flex-col mb-4">
+          <label
+            htmlFor="isNewlyCreated"
+            className="text-sm font-medium text-black md:text-base"
+          >
+            Is Newly Created?
+          </label>
+          <div className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              name="isNewlyCreated"
+              id="isNewlyCreated"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              checked={formik.values.isNewlyCreated}
+              className="w-4 h-4 border border-gray-700 rounded-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+            <span className="text-sm text-gray-700 md:text-base">
+              {formik.values.isNewlyCreated ? "Yes" : "No"}
+            </span>
+          </div>
+          {formik.touched.isNewlyCreated && formik.errors.isNewlyCreated && (
+            <p className="mt-1 text-sm text-red-500">
+              {formik.errors.isNewlyCreated}
+            </p>
+          )}
         </div>
 
         <button
