@@ -17,6 +17,7 @@ import UserTable from "./UserTable";
 import GetUserById from "./UserTable/getUserById"; 
 import ProductTable from "./ProductTable";
 import CreateProduct from "./ProductTable/createProduct";
+import EditProduct from "./ProductTable/editProduct";
 
 export {
   Home,
@@ -38,4 +39,5 @@ export {
   GetUserById,
   ProductTable,
   CreateProduct,
+  EditProduct,
 };
