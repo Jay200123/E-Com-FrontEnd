@@ -8,7 +8,7 @@ export default function () {
         <div className="hidden md:block w-[12.5%]">
           <ProductSidebar />
         </div>
-        <div className="w-[87.5%]">
+        <div className="w-[87.5%] h-screen overflow-y-auto">
           <Outlet />
         </div>
       </main>
