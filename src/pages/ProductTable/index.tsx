@@ -14,10 +14,11 @@ export default function () {
   const { getAllProducts, deleteProduct } = useProductStore();
   const [findProduct, setFindProduct] = useState<string>("");
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ["users"],
     queryFn: getAllProducts,
   });
+
 
   const filteredProducts = data?.filter((p) =>
     p?.product_name?.toLowerCase().includes(findProduct.toLowerCase())
@@ -27,6 +28,7 @@ export default function () {
     if (window.confirm("Are you sure you want to delete this Product?")) {
       await deleteProduct(id);
       toast.success("Product Deleted Successfully");
+      refetch();
     }
   };
 
@@ -49,6 +51,11 @@ export default function () {
     {
       name: "Category",
       selector: (row) => row.category,
+      sortable: true,
+    },
+    {
+      name: "Is New",
+      selector: (row) => row.isNewlyCreated ? "Yes" : "No",
       sortable: true,
     },
     {
