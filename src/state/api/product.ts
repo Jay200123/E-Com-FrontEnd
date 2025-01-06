@@ -48,12 +48,12 @@ export const useProductStore = create<ProductState>((set) => ({
   },
 
   updateProduct: async (id: string, data: FormData) => {
-    await api.patch(`/products/${id}`, data);
+    await api.patch(`/product/edit/${id}`, data);
     set({ message: "Product record updated", loading: false });
   },
 
   deleteProduct: async (id: string) => {
-    await api.delete(`/products/${id}`);
+    await api.delete(`/product/${id}`);
     set({ message: "Product record deleted", loading: false });
   },
 
