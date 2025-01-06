@@ -25,6 +25,7 @@ import {
   GetUserById,
   ProductTable,
   CreateProduct,
+  EditProduct,
 } from "./pages";
 
 import { ProtectedRoute } from "./components";
@@ -208,6 +209,14 @@ export default function App() {
             element={
               <ProtectedRoute userRole={["Admin"]}>
                 <CreateProduct />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/product/edit/:id"  
+            element={
+              <ProtectedRoute userRole={["Admin"]}>
+                <EditProduct />
               </ProtectedRoute>
             }
           />
