@@ -53,7 +53,7 @@ export default function () {
             )}
 
             <p className="mt-2 text-sm font-semibold text-gray-700 truncate">
-              {p.product_name} ({p?.color})
+              {p.product_name}
             </p>
 
             <div className="flex items-center mt-1 space-x-1">
