@@ -14,7 +14,7 @@ export default function () {
   const { getAllUsers, deleteUserById } = useUserStore();
   const [findUser, setFindUser] = useState<string>("");
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ["users"],
     queryFn: getAllUsers,
   });
@@ -27,6 +27,7 @@ export default function () {
     if (window.confirm("Are you sure you want to delete this User?")) {
       await deleteUserById(id);
       toast.success("User Deleted Successfully");
+      refetch();
     }
   };
 
