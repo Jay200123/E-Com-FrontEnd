@@ -17,6 +17,7 @@ export default function () {
   const back = () => {
     window.history.back();
   };
+  
   return (
     <div className="flex-col items-center justify-between hidden w-full h-screen text-black border bg-slate-50 border-l-gray-500 md:flex">
       <div className="flex flex-col justify-center p-1">
