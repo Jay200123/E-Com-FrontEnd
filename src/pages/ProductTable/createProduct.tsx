@@ -28,6 +28,7 @@ export default function () {
       color: "",
       category: "",
       quantity: "",
+      isNewlyCreated: true,
       image: [],
     },
     validationSchema: createProductValidationSchema,
