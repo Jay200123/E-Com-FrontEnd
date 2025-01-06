@@ -8,7 +8,7 @@ export default function () {
         <div className="hidden md:block w-[15%] border ">
           <AdminSideBar />
         </div>
-        <div className="w-full md:w-[85.5%] h-screen overflow-y-auto border">
+        <div className="w-full md:w-[85.5%] h-screen border">
           <AdminNavbar />
           <Outlet />
         </div>
