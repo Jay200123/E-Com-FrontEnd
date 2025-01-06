@@ -1,5 +1,5 @@
 import DataTable, { TableColumn } from "react-data-table-component";
-import { FaEye, FaTrash } from "react-icons/fa";
+import { FaEye, FaPenAlt, FaTrash } from "react-icons/fa";
 import { FadeLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import { useProductStore } from "../../state/store";
@@ -82,8 +82,12 @@ export default function () {
       cell: (row) => (
         <div className="flex items-center text-center">
           <FaEye
-            className="mr-2 text-xl text-green-300"
+            className="mr-2 text-xl text-green-500"
             onClick={() => navigate(`/product/${row._id}`)}
+          />
+            <FaPenAlt 
+            className="mr-2 text-xl text-blue-500"
+            onClick={() => navigate(`/product/edit/${row._id}`)}
           />
           <FaTrash
             className="text-xl text-red-500"
@@ -106,7 +110,7 @@ export default function () {
             <div className="flex items-center justify-between m-2">
               <input
                 type="text"
-                className="w-1/4 p-1 mb-4 border border-gray-300 rounded-lg placeholder:text-black"
+                className="w-1/4 p-1 mb-4 border border-gray-500 rounded-lg placeholder:text-black"
                 onChange={(e) => setFindProduct(e.target.value)}
                 placeholder="Find User by Name"
               />
