@@ -111,7 +111,7 @@ export default function () {
                 placeholder="Find User by Name"
               />
                 <button
-                onClick={() => toast.error("Feature not available") }
+                onClick={() => navigate(`/product/create`) }
                 className="text-[1rem] bg-gray-700 text-white  p-[15px] rounded-md transition-all duration-500  hover:opacity-70 border border-gray"
               >
                 Add New Product <i className="fa fa-plus"></i>
