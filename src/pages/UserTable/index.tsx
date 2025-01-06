@@ -82,7 +82,7 @@ export default function () {
       cell: (row) => (
         <div className="flex items-center text-center">
           <FaEye
-            className="mr-2 text-xl text-green-300"
+            className="mr-2 text-xl text-green-500"
             onClick={() => navigate(`/user/${row._id}`)}
           />
           <FaTrash
