@@ -42,7 +42,7 @@ export default function () {
 
   return (
     <>
-      <div className="flex flex-col items-center w-full h-screen md:flex-row">
+      <div className="flex flex-col items-center overflow-x-auto w-full h-full md:flex-row">
         <div className="relative w-1/2 h-full ">
           <i
             onClick={back}
@@ -78,7 +78,7 @@ export default function () {
             {productColors?.map((color, index) => (
               <div
                 key={`${color}-${index}`}
-                className={`w-8 h-8 bg-${color} border border-black rounded-full`}
+                className={`w-8 h-8 bg-[${color}] border border-black rounded-full`}
               ></div>
             ))}
           </div>
