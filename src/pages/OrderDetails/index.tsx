@@ -52,7 +52,7 @@ export default function () {
               </span>
             </h3>
             <h3 className="text-sm font-medium text-black md:text-lg md:font-bold">
-            <i className="mr-1 fa-solid fa-file-invoice"></i>
+              <i className="mr-1 fa-solid fa-calendar"></i>
               Order Subtotal:{" "}
               <span className="ml-1 font-medium underline text-md md:text-lg">
                 ₱ {data?.price}
