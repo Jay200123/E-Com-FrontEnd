@@ -47,12 +47,18 @@ export default function () {
     },
   });
 
+const back = ()=>{
+  window.history.back();
+}
 
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="flex items-center w-full h-[36rem] rounded-sm shadow-md"
+      className="relative flex items-center w-full h-[36rem] rounded-sm shadow-md"
     >
+       <h3 onClick={back} className="absolute ml-1 text-sm text-left text-white cursor-pointer top-1 left-1 md:text-lg">
+          <i className="mr-1 fa-solid fa-arrow-left"></i>Go Back
+        </h3>
       <div className="hidden w-1/2 h-full md:block">
         <img
           src={ImageOne}
