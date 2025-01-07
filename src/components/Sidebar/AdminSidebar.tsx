@@ -18,6 +18,10 @@ export default function () {
     navigate("/admin/dashboard");
   }
 
+  const orders = ()=>{
+    navigate("/orders/table");
+  }
+
   const handleLogout = async () => {
     try {
       await logout();
@@ -48,11 +52,8 @@ export default function () {
           <li onClick={products} className="text-gray-700 cursor-pointer text-[1rem] font-medium mb-4">
             <i className="mr-3 fa-solid fa-mobile"></i>Products
           </li>
-          <li className="text-gray-700 text-[1rem] font-medium mb-4">
+          <li onClick={orders} className="text-gray-700 text-[1rem] font-medium mb-4">
             <i className="mr-3 fa-solid fa-cart-shopping"></i>Orders
-          </li>
-          <li className="text-gray-700 text-[1rem] font-medium mb-4">
-            <i className="mr-3 fa-solid fa-receipt"></i>Checkout
           </li>
           <li className="text-gray-700 text-[1rem] font-medium mb-4">
             <i className="mr-3 fa-solid fa-gear"></i>Setting
