@@ -89,7 +89,7 @@ export default function () {
         <div className="flex items-center text-center">
           <FaEye
             className="mr-2 text-xl text-green-500"
-            onClick={() => navigate(`/product/${row._id}`)}
+            onClick={() => navigate(`/product/details/${row._id}`)}
           />
           <FaPenAlt
             className="mr-2 text-xl text-blue-500"
