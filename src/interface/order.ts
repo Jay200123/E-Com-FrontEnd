@@ -1,4 +1,5 @@
 import { Product } from "./product";
+import { User } from "./user";
 
 interface Order {
   _id: string;
@@ -6,7 +7,7 @@ interface Order {
   orderNumber: string;
   date_placed: string;
   date_delivered: string;
-  user: string;
+  user: User;
   price: number;
   status: string;
   payment: string;
