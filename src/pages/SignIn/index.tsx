@@ -81,13 +81,6 @@ export default function () {
         {formik.touched.password && formik.errors.password ? (
           <div className="text-sm text-red-500">{formik.errors.password}</div>
         ) : null}
-        <div className="flex items-center mb-4 space-x-2">
-          <input type="checkbox" className="p-1" />
-          <span className="text-sm">
-            I Agree with <span className="font-bold">Privacy Policy</span> and{" "}
-            <span className="font-bold">Terms of Use</span>
-          </span>
-        </div>
         <button
           type="submit"
           className="px-4 py-2 text-white bg-black rounded-md hover:bg-blue-600"
