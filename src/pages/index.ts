@@ -18,6 +18,7 @@ import GetUserById from "./UserTable/getUserById";
 import ProductTable from "./ProductTable";
 import CreateProduct from "./ProductTable/createProduct";
 import EditProduct from "./ProductTable/editProduct";
+import GetProductById from "./ProductTable/getProductById";
 import OrderTable from "./OrderTable";
 import GetOrderById from "./OrderTable/getOrderById";
 
@@ -43,5 +44,6 @@ export {
   CreateProduct,
   EditProduct,
   OrderTable,
-  GetOrderById
+  GetOrderById,
+  GetProductById,
 };
