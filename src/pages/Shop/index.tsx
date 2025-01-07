@@ -53,7 +53,7 @@ export default function () {
               />
             )}
             <p className="font-semibold">
-              {p.product_name}({p?.color})
+              {p.product_name}
             </p>
             <div className="flex items-center flex-start">
               <FaStar className="text-yellow-500 " />
