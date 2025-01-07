@@ -34,7 +34,7 @@ export default function () {
 
   const userOrders = orders?.filter(
     (o) =>
-      o?.user.includes(user?._id.toString() || "") && o?.status.includes(filter)
+      o?.user?._id === user?._id.toString() && o?.status.includes(filter)
   );
 
   const editProfile = () => {
@@ -141,7 +141,7 @@ export default function () {
           <div className="relative flex flex-col w-full p-2 h-2/3">
             <button
               onClick={editProfile}
-              className="absolute p-2 text-white bg-blue-700 rounded-sm bottom-3 right-3 md:text-lg w-[6.25rem]"
+              className="absolute p-2 text-white bg-blue-700 rounded-md bottom-3 right-3 md:text-lg w-[6.25rem]"
             >
               Edit
             </button>
@@ -213,9 +213,6 @@ export default function () {
            {" "}
             {filter == "Processing" ? "Pending" : filter} Orders (
             {productDetails?.length})
-          </h3>
-          <h3 className="font-bold text-[1rem] text-center md:text-[1.5rem] md:font-bold">
-            _________________________________________________________
           </h3>
           <div className="flex flex-col w-full h-full p-1 overflow-y-auto max-h-[30rem]">
             {productDetails?.map((p, index) => (
