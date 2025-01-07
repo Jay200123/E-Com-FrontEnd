@@ -18,7 +18,7 @@ export default function () {
 
   return (
     <>
-      <div className="flex flex-col w-full h-screen overflow-hidden">
+      <div className="flex flex-col w-full h-full overflow-hidden">
         <h3 onClick={back} className="ml-1 text-sm text-left cursor-pointer md:text-lg">
           <i className="mr-1 fa-solid fa-arrow-left"></i>Go Back
         </h3>
@@ -52,7 +52,7 @@ export default function () {
               </span>
             </h3>
             <h3 className="text-sm font-medium text-black md:text-lg md:font-bold">
-              <i className="mr-1 fa-solid fa-calendar"></i>
+            <i className="mr-1 fa-solid fa-file-invoice"></i>
               Order Subtotal:{" "}
               <span className="ml-1 font-medium underline text-md md:text-lg">
                 ₱ {data?.price}
