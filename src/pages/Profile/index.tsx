@@ -74,15 +74,15 @@ export default function () {
               />
             </div>
             <div className="w-2/3 h-full p-2 overflow-hidden border border-white">
-              <h3 className="text-[1rem] font-medium md:text-[1.5rem] md:font-bold">
+              <h3 className="text-sm font-medium md:text-[1rem] md:font-bold">
                 Welcome, {data?.fullname}
               </h3>
-              <p className="text-[1rem]">{data?.email}</p>
-              <p className="text-[1rem]">{data?.contact_number}</p>
-              <div className="flex justify-between w-full">
+              <p className="text-sm md:text-[1rem]">{data?.email}</p>
+              <p className="text-sm md:text-[1rem]">{data?.contact_number}</p>
+              <div className="flex justify-between w-full mb-4 overflow-x-auto md:mb-0 ">
                 <button
                   onClick={() => setFilterValue("Processing")}
-                  className={`p-1 text-sm m-1 w-[6rem] rounded-md border text-center flex flex-col items-center ${
+                  className={`p-1 text-xs md:text-sm m-1 w-[6rem] rounded-md border text-center flex flex-col items-center ${
                     filter === "Processing"
                       ? "bg-white text-orange-400 border-orange-400"
                       : "bg-orange-400 text-white border-white"
@@ -93,7 +93,7 @@ export default function () {
                 </button>
                 <button
                   onClick={() => setFilterValue("Packed")}
-                  className={`p-1 text-sm m-1 w-[6rem] border rounded-md text-center flex flex-col items-center ${
+                  className={`p-1 text-xs md:text-sm m-1 w-[6rem] border rounded-md text-center flex flex-col items-center ${
                     filter === "Packed"
                       ? "bg-white text-yellow-300 border-yellow-300"
                       : "bg-yellow-300 text-white border-yellow-300"
@@ -104,7 +104,7 @@ export default function () {
                 </button>
                 <button
                   onClick={() => setFilterValue("Shipped")}
-                  className={`p-1 text-sm m-1 w-[6rem] rounded-md border text-center flex flex-col items-center ${
+                  className={`p-1 text-xs md:text-sm m-1 w-[6rem] rounded-md border text-center flex flex-col items-center ${
                     filter === "Shipped"
                       ? "bg-white text-blue-400 border-blue-400"
                       : "bg-blue-400 text-white border-white"
@@ -115,7 +115,7 @@ export default function () {
                 </button>
                 <button
                   onClick={() => setFilterValue("Delivered")}
-                  className={`p-1 text-sm m-1 w-[6rem] rounded-md border text-center flex flex-col items-center ${
+                  className={`p-1 text-xs md:text-sm m-1 w-[6rem] rounded-md border text-center flex flex-col items-center ${
                     filter === "Delivered"
                       ? "bg-white text-green-400 border-green-400"
                       : "bg-green-400 text-white border-white"
@@ -126,7 +126,7 @@ export default function () {
                 </button>
                 <button
                   onClick={() => setFilterValue("Cancelled")}
-                  className={`p-1 text-sm m-1 w-[6rem] rounded-md border text-center flex flex-col items-center ${
+                  className={`p-1 text-xs md:text-sm m-1 w-[6rem] rounded-md border text-center flex flex-col items-center ${
                     filter === "Cancelled"
                       ? "bg-white text-red-500 border-red-500"
                       : "bg-red-500 text-white border-white"
@@ -154,7 +154,7 @@ export default function () {
                   type="text"
                   readOnly
                   placeholder={data?.fullname}
-                  className="overflow-hidden placeholder:text-black p-1 mb-4 text-[1rem] border-b border-gray-300 rounded-sm"
+                  className="overflow-hidden placeholder:text-black p-1 mb-4 text-sm md:text-[1rem] border-b border-gray-300 rounded-sm"
                 />
               </div>
               <div className="flex flex-col w-1/2 p-2">
@@ -165,7 +165,7 @@ export default function () {
                   type="text"
                   readOnly
                   placeholder={data?.contact_number}
-                  className="overflow-hidden placeholder:text-black p-1 mb-4 text-[1rem] border-b border-gray-300 rounded-sm"
+                  className="overflow-hidden placeholder:text-black p-1 mb-4 text-xs md:text-[1rem] border-b border-gray-300 rounded-sm"
                 />
               </div>
             </div>
@@ -178,7 +178,7 @@ export default function () {
                   type="text"
                   readOnly
                   placeholder={data?.address}
-                  className="overflow-hidden placeholder:text-black first-letter:p-1 mb-4 text-[1rem] border-b border-gray-300 rounded-sm"
+                  className="overflow-hidden placeholder:text-black first-letter:p-1 mb-4 text-xs md:text-[1rem] border-b border-gray-300 rounded-sm"
                 />
               </div>
               <div className="flex flex-col w-1/2 p-2">
@@ -189,7 +189,7 @@ export default function () {
                   type="text"
                   readOnly
                   placeholder={data?.city}
-                  className="overflow-hidden placeholder:text-black p-1 mb-4 text-[1rem] border-b border-gray-300 rounded-sm"
+                  className="overflow-hidden placeholder:text-black p-1 mb-4 text-xs md:text-[1rem] border-b border-gray-300 rounded-sm"
                 />
               </div>
             </div>
@@ -202,7 +202,7 @@ export default function () {
                   type="text"
                   readOnly
                   placeholder={data?.email}
-                  className="overflow-hidden placeholder:text-black p-1 mb-4 text-[1rem] border-b border-gray-300 rounded-sm"
+                  className="overflow-hidden placeholder:text-black p-1 mb-4 text-xs md:text-[1rem] border-b border-gray-300 rounded-sm"
                 />
               </div>
             </div>
@@ -214,7 +214,7 @@ export default function () {
             {filter == "Processing" ? "Pending" : filter} Orders (
             {productDetails?.length})
           </h3>
-          <div className="flex flex-col w-full h-full p-1 overflow-y-auto max-h-[30rem]">
+          <div className="flex flex-col w-full h-full p-1 overflow-y-auto md:max-h-[30rem]">
             {productDetails?.map((p, index) => (
               <div
               onClick={() => navigate(`/user/order/detail/${p.order_id}`)}  
