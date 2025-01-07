@@ -39,7 +39,7 @@ export default function () {
         <div className="flex flex-col justify-start w-1/2 h-full overflow-hidden rounded-sm bg-slate-400 ">
           <img className="relative object-cover w-full h-full" src={ImageOne} />
           <div className="absolute p-2 text-left">
-            <h3 className="text-2xl font-bold text-white">Mobile Phones</h3>
+            <h3 className="text-lg font-medium text-white md:font-bold md:text-2xl">Mobile Phones</h3>
             <p
               onClick={mobiles}
               className="text-lg text-white underline cursor-pointer"
@@ -52,7 +52,7 @@ export default function () {
           <div className="flex flex-start relative h-[15rem] w-full  mb-2 overflow-hidden rounded-sm">
             <img className="object-cover w-full h-auto" src={ImageTwo} />
             <div className="absolute bottom-1 left-1">
-              <h3 className="text-2xl font-bold text-white">Laptops</h3>
+              <h3 className="text-lg font-medium text-white md:text-2xl md:font-bold">Laptops</h3>
               <p
                 onClick={laptops}
                 className="text-lg text-white underline cursor-pointer"
@@ -65,7 +65,7 @@ export default function () {
           <div className="flex flex-start relative h-[15rem] w-full overflow-hidden rounded-sm">
             <img className="object-cover w-full h-auto" src={ImageThree} />
             <div className="absolute bottom-1 left-1">
-              <h3 className="text-2xl font-bold text-white">Computers</h3>
+              <h3 className="text-lg font-medium text-white md:text-2xl md:font-bold">Computers</h3>
               <p
                 onClick={computers}
                 className="text-lg text-white underline cursor-pointer"
@@ -77,9 +77,9 @@ export default function () {
         </div>
       </div>
       <div className="flex flex-col items-center w-full p-2">
-        <h3 className="text-3xl font-bold text-left">New Arrivals</h3>
+        <h3 className="text-lg font-medium text-left md:text-3xl md:font-bold">New Arrivals</h3>
         {newProducts?.length === 0 && (
-          <h3 className="text-3xl font-bold text-left">No New Arrivals Yet</h3>
+          <h3 className="text-lg font-medium text-left md:text-3xl md:font-bold">No New Arrivals Yet</h3>
         )}
         <div className="flex items-center w-full overflow-x-auto">
           <div className="flex flex-nowrap">
@@ -128,53 +128,53 @@ export default function () {
           />
         </div>
         <div className="w-1/2 h-full">
-          <h3 className="text-2xl font-bold">
+          <h3 className="text-lg font-medium md:text-2xl md:font-bold">
             Save Up to 35% on Select Devices
           </h3>
-          <h3 className="text-lg">Fresh Tech, Now More Affordable</h3>
-          <p className="text-sm">
+          <h3 className="text-sm md:text-lg">Fresh Tech, Now More Affordable</h3>
+          <p className="text-xs md:text-sm">
             Upgrade your tech effortlessly with our latest deals. Explore sleek
             and powerful mobile devices, laptops, and computers designed to
             elevate your digital lifestyle—all at unbeatable prices.
           </p>
-          <p className="text-lg text-black underline cursor-pointer">
+          <p className="text-sm text-black underline cursor-pointer md:text-lg">
             Shop Now<i className="ml-1 fa-solid fa-arrow-right"></i>
           </p>
         </div>
       </div>
       <div className="flex items-center justify-center">
         <div className="flex flex-col items-center mt-3 md:grid md:grid-cols-4 md:gap-4">
-          <div className="flex flex-col m-2 overflow-hidden text-center p-2 h-[11.7rem] rounded-md  w-[11.7rem] border border-black">
-            <i className="text-3xl fa-solid fa-truck-fast"></i>
-            <h3 className="text-lg">Free Shipping</h3>
-            <p className="text-sm">
+          <div className="flex flex-col m-2 overflow-hidden text-center p-2 h-[10rem] w-[10rem] md:h-[11.7rem] rounded-md  md:w-[11.7rem] border border-black">
+            <i className="text-lg md:text-3xl fa-solid fa-truck-fast"></i>
+            <h3 className="text-sm md:text-lg">Free Shipping</h3>
+            <p className="text-xs md:text-sm">
               Get your orders delivered at no extra cost! Enjoy free shipping on
               all purchases above ₱150.00.
             </p>
           </div>
 
-          <div className="flex flex-col m-2 overflow-hidden text-center p-2 h-[11.7rem] w-[11.7rem] rounded-md   border border-black">
-            <i className="text-3xl fa-solid fa-award"></i>
-            <h3 className="text-lg">Money-Back Guarantee</h3>
-            <p className="text-sm">
+          <div className="flex flex-col m-2 overflow-hidden text-center p-2 h-[10rem] w-[10rem] md:h-[11.7rem] rounded-md  md:w-[11.7rem] border border-black">
+            <i className="text-lg md:text-3xl fa-solid fa-award"></i>
+            <h3 className="text-sm md:text-lg">Money-Back Guarantee</h3>
+            <p className="text-xs md:text-sm">
               Shop with confidence! Enjoy a hassle-free 30-day money-back
               guarantee on your purchases.
             </p>
           </div>
 
-          <div className="flex flex-col m-2 overflow-hidden text-center p-2 h-[11.7rem] w-[11.7rem] rounded-md   border border-black">
-            <i className="text-3xl fa-solid fa-lock"></i>
-            <h3 className="text-lg">Secure Payments</h3>
-            <p className="text-sm">
+          <div className="flex flex-col m-2 overflow-hidden text-center p-2 h-[10rem] w-[10rem] md:h-[11.7rem] rounded-md  md:w-[11.7rem] border border-black">
+            <i className="text-lg md:text-3xl fa-solid fa-lock"></i>
+            <h3 className="text-sm md:text-lg">Secure Payments</h3>
+            <p className="text-xs md:text-sm">
               Enjoy peace of mind with our trusted payment options, ensuring
               safe and reliable transactions for all orders above ₱150.00.
             </p>
           </div>
 
-          <div className="flex flex-col m-2 text-center overflow-hidden p-2 h-[11.7rem] w-[11.7rem] rounded-md  border border-black">
-            <i className="text-3xl fa-solid fa-phone"></i>
-            <h3 className="text-lg">Customer Support</h3>
-            <p className="text-sm">
+          <div className="flex flex-col m-2 overflow-hidden text-center p-2 h-[10rem] w-[10rem] md:h-[11.7rem] rounded-md  md:w-[11.7rem] border border-black">
+            <i className="text-lg md:text-3xl fa-solid fa-phone"></i>
+            <h3 className="text-sm md:text-lg">Customer Support</h3>
+            <p className="text-xs md:text-sm">
               We're here to help! Reach out to our dedicated support team for
               assistance with any inquiries or concerns about your order.
             </p>
