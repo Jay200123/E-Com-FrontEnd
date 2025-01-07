@@ -26,6 +26,7 @@ import {
   ProductTable,
   CreateProduct,
   EditProduct,
+  OrderTable,
 } from "./pages";
 
 import { ProtectedRoute } from "./components";
@@ -180,7 +181,7 @@ export default function App() {
               </ProtectedRoute>
             }
           />
-            <Route
+          <Route
             path="/users/table"
             element={
               <ProtectedRoute userRole={["Admin"]}>
@@ -188,7 +189,7 @@ export default function App() {
               </ProtectedRoute>
             }
           />
-           <Route
+          <Route
             path="/user/:id"
             element={
               <ProtectedRoute userRole={["Admin"]}>
@@ -196,16 +197,16 @@ export default function App() {
               </ProtectedRoute>
             }
           />
-           <Route
-            path="/products/table"  
+          <Route
+            path="/products/table"
             element={
               <ProtectedRoute userRole={["Admin"]}>
                 <ProductTable />
               </ProtectedRoute>
             }
           />
-           <Route
-            path="/product/create"  
+          <Route
+            path="/product/create"
             element={
               <ProtectedRoute userRole={["Admin"]}>
                 <CreateProduct />
@@ -213,10 +214,19 @@ export default function App() {
             }
           />
           <Route
-            path="/product/edit/:id"  
+            path="/product/edit/:id"
             element={
               <ProtectedRoute userRole={["Admin"]}>
                 <EditProduct />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/orders/table"
+            element={
+              <ProtectedRoute userRole={["Admin"]}>
+                <OrderTable />
               </ProtectedRoute>
             }
           />
