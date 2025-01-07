@@ -156,7 +156,7 @@ export default function () {
           <div className="flex flex-col m-2 overflow-hidden text-center p-2 h-[10rem] w-[10rem] md:h-[11.7rem] rounded-md  md:w-[11.7rem] border border-black">
             <i className="text-lg md:text-3xl fa-solid fa-award"></i>
             <h3 className="text-sm md:text-lg">Money-Back Guarantee</h3>
-            <p className="text-xs md:text-sm">
+            <p className="text-xs">
               Shop with confidence! Enjoy a hassle-free 30-day money-back
               guarantee on your purchases.
             </p>
@@ -165,7 +165,7 @@ export default function () {
           <div className="flex flex-col m-2 overflow-hidden text-center p-2 h-[10rem] w-[10rem] md:h-[11.7rem] rounded-md  md:w-[11.7rem] border border-black">
             <i className="text-lg md:text-3xl fa-solid fa-lock"></i>
             <h3 className="text-sm md:text-lg">Secure Payments</h3>
-            <p className="text-xs md:text-sm">
+            <p className="text-xs">
               Enjoy peace of mind with our trusted payment options, ensuring
               safe and reliable transactions for all orders above ₱150.00.
             </p>
@@ -174,7 +174,7 @@ export default function () {
           <div className="flex flex-col m-2 overflow-hidden text-center p-2 h-[10rem] w-[10rem] md:h-[11.7rem] rounded-md  md:w-[11.7rem] border border-black">
             <i className="text-lg md:text-3xl fa-solid fa-phone"></i>
             <h3 className="text-sm md:text-lg">Customer Support</h3>
-            <p className="text-xs md:text-sm">
+            <p className="text-xs">
               We're here to help! Reach out to our dedicated support team for
               assistance with any inquiries or concerns about your order.
             </p>
