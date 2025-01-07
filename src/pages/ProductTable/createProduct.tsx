@@ -41,6 +41,7 @@ export default function () {
       formData.append("price", values.price);
       formData.append("category", values.category);
       formData.append("quantity", values.quantity);
+      formData.append("isNewlyCreated", values.isNewlyCreated.toString())
       values.image.forEach((file) => {
         formData.append("image", file);
       });
@@ -57,16 +58,16 @@ export default function () {
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="relative flex flex-col md:flex-row w-full h-screen"
+      className="relative flex flex-col w-full h-screen md:flex-row"
     >
       <h3
         onClick={back}
-        className="absolute top-1 left-1 ml-1 text-sm font-bold cursor-pointer md:text-2xl"
+        className="absolute ml-1 text-sm font-bold cursor-pointer top-1 left-1 md:text-2xl"
       >
         <i className="mr-1 fa-solid fa-arrow-left"></i>Go Back
       </h3>
 
-      <div className="hidden md:block md:w-1/2 h-screen border">
+      <div className="hidden h-screen border md:block md:w-1/2">
         <img
           src={ImageOne}
           alt="Image"
@@ -233,7 +234,7 @@ export default function () {
           >
             Color
           </label>
-          <div className="p-2 border rounded-md">
+          <div className="flex justify-center p-2 border rounded-md">
             <HexColorPicker
               color={formik.values.color}
               onChange={(color) => formik.setFieldValue("color", color)}
