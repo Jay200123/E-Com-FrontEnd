@@ -19,6 +19,7 @@ import ProductTable from "./ProductTable";
 import CreateProduct from "./ProductTable/createProduct";
 import EditProduct from "./ProductTable/editProduct";
 import OrderTable from "./OrderTable";
+import GetOrderById from "./OrderTable/getOrderById";
 
 export {
   Home,
@@ -42,4 +43,5 @@ export {
   CreateProduct,
   EditProduct,
   OrderTable,
+  GetOrderById
 };
