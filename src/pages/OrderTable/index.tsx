@@ -1,5 +1,5 @@
 import DataTable, { TableColumn } from "react-data-table-component";
-import { FaEye, FaPenAlt, FaTrash } from "react-icons/fa";
+import { FaBox, FaShip, FaTruckMoving, FaTrash, FaEye } from "react-icons/fa";
 import { FadeLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import { useOrderStore } from "../../state/store";
@@ -10,14 +10,42 @@ import { Order } from "../../interface";
 
 export default function () {
   const navigate = useNavigate();
-  const { getAllOrders, deleteOrderById } = useOrderStore();
+  const {
+    getAllOrders,
+    packedOrder,
+    shippedOrder,
+    deliveredOrder,
+    deleteOrderById,
+  } = useOrderStore();
 
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["orders"],
     queryFn: getAllOrders,
   });
 
-  console.log(data);
+  const handlePacked = async (id: string) => {
+    if (window.confirm("Packed Order?")) {
+      await packedOrder(id);
+      toast.success("Order Successfully Packed");
+      refetch();
+    }
+  };
+
+  const handleShipped = async (id: string) => {
+    if (window.confirm("shipped Order?")) {
+      await shippedOrder(id);
+      toast.success("Order Successfully Shipped");
+      refetch();
+    }
+  };
+
+  const handleDelivery = async (id: string) => {
+    if (window.confirm("Order Delivered?")) {
+      await deliveredOrder(id);
+      toast.success("Order Successfully Delivered");
+      refetch();
+    }
+  };
 
   const handleDelete = async (id: string) => {
     if (window.confirm("Are you sure you want to delete this Order?")) {
@@ -80,16 +108,30 @@ export default function () {
       name: "Actions",
       cell: (row) => (
         <div className="flex items-center text-center">
-          <FaEye
-            className="mr-2 text-xl text-green-500"
-            onClick={() => navigate(`/product/${row._id}`)}
+          <FaBox
+            title="Packed Order"
+            className="mr-2 text-xl text-yellow-500"
+            onClick={() => handlePacked(row._id)}
           />
-          <FaPenAlt
+          <FaShip
+            title="Shipped Order"
             className="mr-2 text-xl text-blue-500"
-            onClick={() => navigate(`/product/edit/${row._id}`)}
+            onClick={() => handleShipped(row._id)}
           />
+          <FaTruckMoving
+            title="Deliver Order"
+            className="mr-1 text-xl text-green-500"
+            onClick={() => handleDelivery(row._id)}
+          />
+          <FaEye
+            title="View Order"
+            className="mr-1 text-xl text-gray-500"
+            onClick={() => navigate(`/order/${row?._id}`)}
+          />
+
           <FaTrash
-            className="text-xl text-red-500"
+            title="Delete Order"
+            className="mr-1 text-xl text-red-500"
             onClick={() => handleDelete(row._id)}
           />
         </div>
