@@ -24,6 +24,9 @@ interface OrderState {
   getAllOrders: ()=>Promise<Order[]>;
   getOrderById: (id: string)=>Promise<Order>;
   addOrder: (values: OrderValues)=>Promise<void>;
+  packedOrder: (id:string) => Promise<void>;
+  shippedOrder: (id: string) => Promise<void>;
+  deliveredOrder: (id: string)=> Promise<void>;
   updateOrderById: (id: string, formData: FormData)=>Promise<void>; 
   deleteOrderById: (id: string)=>Promise<void>; 
 }
