@@ -48,8 +48,8 @@ export default function () {
         />
       </div>
       <div className="flex flex-col justify-center w-full h-full p-4 md:w-1/2">
-        <h3 className="mb-2 text-3xl font-semibold">Sign In</h3>
-        <p className="mb-4 text-[1rem] text-gray-600">
+        <h3 className="mb-2 text-lg font-semibold md:text-3xl">Sign In</h3>
+        <p className="mb-4 text-xs md:text-[1rem] text-gray-600">
           Don't have an account yet?
           <span className="ml-1 font-bold underline">Sign Up</span>
         </p>
@@ -62,7 +62,7 @@ export default function () {
           onChange={formik?.handleChange}
           value={formik?.values?.email}
           placeholder="Email"
-          className="p-1 mb-4 text-[1rem] border-b border-gray-700 rounded-sm"
+          className="p-1 mb-4 text-sm md:text-[1rem] border-b border-gray-700 rounded-sm"
         />
         {formik.touched.email && formik.errors.email ? (
           <div className="text-sm text-red-500">{formik.errors.email}</div>
@@ -76,7 +76,7 @@ export default function () {
           onChange={formik?.handleChange}
           value={formik?.values?.password}
           placeholder="Password"
-          className="p-1 mb-4 text-[1rem] border-b border-gray-700 rounded-sm"
+          className="p-1 mb-4 text-sm md:text-[1rem] border-b border-gray-700 rounded-sm"
         />
         {formik.touched.password && formik.errors.password ? (
           <div className="text-sm text-red-500">{formik.errors.password}</div>
