@@ -19,7 +19,6 @@ export default function () {
     queryFn: getAllProducts,
   });
 
-
   const filteredProducts = data?.filter((p) =>
     p?.product_name?.toLowerCase().includes(findProduct.toLowerCase())
   );
@@ -55,7 +54,7 @@ export default function () {
     },
     {
       name: "Is New",
-      selector: (row) => row.isNewlyCreated ? "Yes" : "No",
+      selector: (row) => (row.isNewlyCreated ? "Yes" : "No"),
       sortable: true,
     },
     {
@@ -92,7 +91,7 @@ export default function () {
             className="mr-2 text-xl text-green-500"
             onClick={() => navigate(`/product/${row._id}`)}
           />
-            <FaPenAlt 
+          <FaPenAlt
             className="mr-2 text-xl text-blue-500"
             onClick={() => navigate(`/product/edit/${row._id}`)}
           />
@@ -106,30 +105,29 @@ export default function () {
   ];
 
   return (
-    <div className="w-full overflow-hidden bg-none">  
+    <div className="w-full overflow-x-auto bg-none">
       {isLoading ? (
         <div className="flex justify-center mt-8 loader">
           <FadeLoader color="#b3b3ff" loading={true} height={15} width={5} />
         </div>
       ) : (
-        <div>
-          <div className="m-3 rounded-lg max-w-xloverflow-hidden md:max-w-6xl ">
-            <div className="flex items-center justify-between m-2">
-              <input
-                type="text"
-                className="w-1/4 p-1 mb-4 border border-gray-500 rounded-lg placeholder:text-black"
-                onChange={(e) => setFindProduct(e.target.value)}
-                placeholder="Find User by Name"
-              />
-                <button
-                onClick={() => navigate(`/product/create`) }
-                className="text-[1rem] bg-gray-700 text-white  p-[15px] rounded-md transition-all duration-500  hover:opacity-70 border border-gray"
-              >
-                Add New Product <i className="fa fa-plus"></i>
-              </button>
-            </div>
+        <div className="m-3 rounded-lg md:max-w-6xl ">
+          <div className="flex items-center justify-between m-2">
+            <input
+              type="text"
+              className="w-1/4 p-1 mb-4 border border-gray-500 rounded-lg placeholder:text-black"
+              onChange={(e) => setFindProduct(e.target.value)}
+              placeholder="Find Product"
+            />
+            <button
+              onClick={() => navigate(`/product/create`)}
+              className="text-[1rem] bg-gray-700 text-white  p-[15px] rounded-md transition-all duration-500  hover:opacity-70 border border-gray"
+            >
+              Add New Product <i className="fa fa-plus"></i>
+            </button>
+          </div>
             <DataTable
-              title="User Records"
+              title="Product Records"
               columns={columns}
               data={filteredProducts || []}
               pagination
@@ -139,7 +137,6 @@ export default function () {
               paginationRowsPerPageOptions={[10, 20, 30]}
               customStyles={tableCustomStyles}
             />
-          </div>
         </div>
       )}
     </div>
