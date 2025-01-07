@@ -53,10 +53,10 @@ export default function () {
           >
             Shop
           </li>
-          <li className="m-3 text-xs font-semibold cursor-pointer md:text-sm">
+          <li className="m-3 text-xs font-semibold cursor-pointer md:block md:text-sm">
             About
           </li>
-          <li className="m-3 text-xs font-semibold cursor-pointer md:text-sm">
+          <li className="hidden m-3 text-xs font-semibold cursor-pointer md:block md:text-sm">
             Contact Us
           </li>
         </ul>
