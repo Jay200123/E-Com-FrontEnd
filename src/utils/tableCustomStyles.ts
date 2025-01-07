@@ -9,7 +9,7 @@ const tableCustomStyles = {
   cells: {
     style: {
       backgroundColor: "#f2f2f2",
-      fontSize: "15px",
+      fontSize: "14px",
       borderBottom: "1px solid #b3b3b3",
     },
     table: {
