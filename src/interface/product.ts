@@ -1,6 +1,9 @@
 import { Brand } from "./brand";
 import { Image } from "./image";
 
+type Category = "Mobile" | "Laptop" | "Computer" | "Tablet";
+
+
 interface Product {
   product: any;
   _id: string;
@@ -11,7 +14,7 @@ interface Product {
   color: string;
   quantity: number;
   orderQuantity: number;  
-  category: string;
+  category: Category;
   isNewlyCreated: boolean;
   image: Image[];
 }
