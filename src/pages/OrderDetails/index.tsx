@@ -18,7 +18,7 @@ export default function () {
 
   return (
     <>
-      <div className="flex flex-col w-full h-full overflow-hidden">
+      <div className="flex flex-col w-full h-full">
         <h3 onClick={back} className="ml-1 text-sm text-left cursor-pointer md:text-lg">
           <i className="mr-1 fa-solid fa-arrow-left"></i>Go Back
         </h3>
@@ -92,7 +92,7 @@ export default function () {
                 <h3 className="text-sm md:text-lg"> ₱ {p?.product?.price}</h3>
               </div>
               <div className="w-full p-2 mb-2">
-                <p className="text-sm md:text-[1rem]">
+                <p className="text-xs md:text-sm">
                   {p?.product?.description}
                 </p>
               </div>
