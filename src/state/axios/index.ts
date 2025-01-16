@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  // baseURL: "https://e-com-backend-peach.vercel.app/api/v1",
-  baseURL: "http://localhost:4000/api/v1",
+  baseURL: import.meta.env.VITE_API_URI,
 });
 
 api.interceptors.request.use((config) => {
