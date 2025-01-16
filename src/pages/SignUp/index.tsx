@@ -43,6 +43,10 @@ export default function () {
       }
     },
   });
+
+  const signIn = () => {  
+    navigate("/signin");
+  }
   return (
     <form
       onSubmit={(e) => {
@@ -59,10 +63,10 @@ export default function () {
         <img src={ImageOne} alt="Image" className="object-cover h-[38rem]" />
       </div>
       <div className="flex flex-col w-full h-full p-4 md:w-1/2">
-        <h3 className="mb-2 text-3xl font-semibold">Sign Up</h3>
-        <p className="mb-4 text-[1rem] text-gray-600">
+        <h3 className="mb-2 text-lg font-semibold md:text-3xl">Sign Up</h3>
+        <p className="mb-4 text-sm md:text-[1rem] text-gray-600">
           Already have an account?
-          <span className="ml-1 font-bold underline">Sign In</span>
+          <span onClick={signIn} className="ml-1 font-bold underline cursor-pointer">Sign In</span>
         </p>
         <input
           type="text"
@@ -72,7 +76,7 @@ export default function () {
           onChange={formik.handleChange}
           value={formik.values.fullname}
           placeholder="Full Name"
-          className="p-1 mb-4 text-[1rem] border-b border-gray-700 rounded-sm"
+          className="p-1 mb-4 text-sm md:text-[1rem] border-b border-gray-700 rounded-sm"
         />
         <input
           type="text"
@@ -82,7 +86,7 @@ export default function () {
           onChange={formik.handleChange}
           value={formik.values.contact_number}
           placeholder="Contact Number"
-          className="p-1 mb-4 text-[1rem] border-b border-gray-700 rounded-sm"
+          className="p-1 mb-4 text-sm md:text-[1rem] border-b border-gray-700 rounded-sm"
         />
         <input
           type="text"
@@ -92,7 +96,7 @@ export default function () {
           onChange={formik.handleChange}
           value={formik.values.address}
           placeholder="Address"
-          className="p-1 mb-4 text-[1rem] border-b border-gray-700 rounded-sm"
+          className="p-1 mb-4 text-sm md:text-[1rem] border-b border-gray-700 rounded-sm"
         />
         <input
           type="text"
@@ -102,7 +106,7 @@ export default function () {
           onChange={formik.handleChange}
           value={formik.values.city}
           placeholder="City"
-          className="p-1 mb-4 text-[1rem] border-b border-gray-700 rounded-sm"
+          className="p-1 mb-4 text-sm md:text-[1rem] border-b border-gray-700 rounded-sm"
         />
         <input
           type="email"
@@ -112,7 +116,7 @@ export default function () {
           onChange={formik.handleChange}
           value={formik.values.email}
           placeholder="Email"
-          className="p-1 mb-4 text-[1rem] border-b border-gray-700 rounded-sm"
+          className="p-1 mb-4 text-sm md:text-[1rem] border-b border-gray-700 rounded-sm"
         />
         <input
           type="password"
@@ -122,13 +126,14 @@ export default function () {
           onChange={formik.handleChange}
           value={formik.values.password}
           placeholder="Password"
-          className="p-1 mb-4 text-[1rem] border-b border-gray-700 rounded-sm"
+          className="p-1 mb-4 text-sm md:text-[1rem] border-b border-gray-700 rounded-sm"
         />
 
         <input
           type="file"
           name="image"
           multiple
+          className="text-xs md:text-sm"
           onChange={(e) => {
             const files = Array.from(e.currentTarget.files || []);
             formik.setFieldValue("image", files);
@@ -140,7 +145,7 @@ export default function () {
             onChange={() => setTerm(!term)}
             className="p-2"
           />
-          <span className="text-sm">
+          <span className="text-xs md:text-sm">
             I Agree with <span className="font-bold">Privacy Policy</span> and{" "}
             <span className="font-bold">Terms of Use</span>
           </span>
