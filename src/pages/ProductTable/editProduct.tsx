@@ -30,7 +30,7 @@ export default function () {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      brand: product?.brand || "",
+      brand: product?.brand?._id || "",
       product_name: product?.product_name || "",
       description: product?.description || "",
       price: product?.price || "",
@@ -58,9 +58,7 @@ export default function () {
       toast.success("Product updated Successfully");
       navigate("/products/table");
     },
-  });
-
-  console.log(formik.values)
+  }); 
 
   const back = () => {
     window.history.back();
@@ -69,16 +67,16 @@ export default function () {
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="relative flex flex-col md:flex-row w-full h-screen"
+      className="relative flex flex-col w-full h-screen md:flex-row"
     >
       <h3
         onClick={back}
-        className="absolute top-1 left-1 ml-1 text-sm font-bold cursor-pointer md:text-2xl"
+        className="absolute ml-1 text-sm font-bold cursor-pointer top-1 left-1 md:text-2xl"
       >
         <i className="mr-1 fa-solid fa-arrow-left"></i>Go Back
       </h3>
 
-      <div className="hidden md:block md:w-1/2 h-screen border">
+      <div className="hidden h-screen border md:block md:w-1/2">
         <img
           src={ImageOne}
           alt="Image"
@@ -311,7 +309,7 @@ export default function () {
           type="submit"
           className="px-4 py-2 text-white bg-black rounded-md hover:bg-blue-600"
         >
-          Create Product
+          Update Product
         </button>
       </div>
     </form>
