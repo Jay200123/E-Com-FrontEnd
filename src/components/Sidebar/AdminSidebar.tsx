@@ -55,9 +55,6 @@ export default function () {
           <li onClick={orders} className="text-gray-700 cursor-pointer text-[1rem] font-medium mb-4">
             <i className="mr-3 fa-solid fa-cart-shopping"></i>Orders
           </li>
-          <li className="text-gray-700 text-[1rem] font-medium mb-4">
-            <i className="mr-3 fa-solid fa-gear"></i>Setting
-          </li>
         </ul>
       </div>
 
