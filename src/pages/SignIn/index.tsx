@@ -35,6 +35,10 @@ export default function () {
     },
   });
 
+  const signup = () => {
+    navigate("/signup");
+  }
+
   return (
     <form
       onSubmit={formik?.handleSubmit}
@@ -51,7 +55,7 @@ export default function () {
         <h3 className="mb-2 text-lg font-semibold md:text-3xl">Sign In</h3>
         <p className="mb-4 text-xs md:text-[1rem] text-gray-600">
           Don't have an account yet?
-          <span className="ml-1 font-bold underline">Sign Up</span>
+          <span onClick={signup} className="ml-1 font-bold underline cursor-pointer">Sign Up</span>
         </p>
 
         <input
